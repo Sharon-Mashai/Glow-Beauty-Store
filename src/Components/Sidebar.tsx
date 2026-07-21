@@ -6,7 +6,7 @@ export const Sidebar = () => {
     <aside className="sidebar">
 
       <div className="logo">
-        <h2>GlowVault</h2>
+        <h2>Glow Beauty</h2>
         <p>FACIAL PRODUCT BOOKMARKS</p>
       </div>
 

@@ -1,32 +1,15 @@
 import { HugeiconsIcon } from "@hugeicons/react";
-import {Edit02Icon,Delete02Icon,} from "@hugeicons/core-free-icons";
+import { Edit02Icon, Delete02Icon } from "@hugeicons/core-free-icons";
 
 export const BookmarkCard = () => {
   return (
     <div className="bookmarkCard">
-
       <div className="cardHeader">
+        <h3>CeraVe Hydrating Cleanser</h3>
 
-        <div className="cardTitle">
-
-          
-          
-            <h3>CeraVe Hydrating Cleanser</h3>
-
-            <a
-              href="https://www.cerave.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              cerave.com
-            </a>
-
-          </div>
-
-
+        <a href="https://www.cerave.com">cerave.com</a>
 
         <div className="cardActions">
-
           <button>
             <HugeiconsIcon icon={Edit02Icon} />
           </button>
@@ -34,9 +17,7 @@ export const BookmarkCard = () => {
           <button>
             <HugeiconsIcon icon={Delete02Icon} />
           </button>
-
         </div>
-
       </div>
 
       <p className="description">
@@ -44,15 +25,12 @@ export const BookmarkCard = () => {
       </p>
 
       <div className="tagContainer">
-
         <span>#Cleanser</span>
 
         <span>#DrySkin</span>
 
         <span>#OfficialStore</span>
-
       </div>
-
     </div>
   );
 };

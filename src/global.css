@@ -1,0 +1,183 @@
+body{
+    background:#0f0f10;
+    color:white;
+}
+.app{
+    background-image: url(./assets/images/heroImage.png);
+    display:flex;
+    min-height:100vh;
+}
+.content{
+    display:flex;
+    flex-direction:column;
+}
+
+.topbar{
+    
+    align-items:center;
+    padding:25px 40px;
+    border-bottom:1px solid #242424;
+}
+
+.topbar h1{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:42px;
+}
+
+
+
+.addBtn{
+    background:#888;
+    color:#111;
+    border:none;
+    padding:15px 28px;
+    border-radius:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.sidebar{
+    border-right:1px solid #242424;
+    display:flex;
+    flex-direction:column;
+}
+
+.logo{
+    padding:40px 25px;
+    border-bottom:1px solid #242424;
+}
+
+.logo h2{
+    color: black;
+    font-size:42px;
+}
+
+.logo p{
+    color:#7d7d7d;
+    letter-spacing:2px;
+    font-size:13px;
+}
+
+.searchBox{
+    margin:25px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#1b1b1d;
+    padding:14px;
+    border-radius:10px;
+}
+
+.searchBox input{
+    flex:1;
+    background:none;
+    border:none;
+    color:white;
+    outline:none;
+}
+.tags{
+    padding:25px;
+}
+
+.tags h3{
+    color:#8b8b8b;
+    margin-bottom:20px;
+}
+
+.tags ul{
+    list-style:none;
+}
+
+.tags li{
+    padding:14px 0;
+    cursor:pointer;
+}
+.bookmarkCount{
+    margin-top:auto;
+    color:#666;
+}
+
+.bookmarkGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:25px;
+    padding:30px;
+}
+
+.bookmarkCard{
+    background: rgb(115, 88, 115);
+    border:1px solid #2a2a2a;
+    border-radius:12px;
+    padding:25px;
+    transition:.3s;
+}
+
+.bookmarkCard:hover{
+    transform:translateY(-5px);
+    border-color: rgb(129, 6, 129);
+}
+
+.cardHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:20px;
+}
+
+.cardTitle{
+    display:flex;
+    gap:15px;
+}
+
+.cardTitle h3{
+    margin-bottom:8px;
+    font-size:22px;
+}
+
+.cardTitle a{
+    color:#888;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.cardActions{
+    display:flex;
+    gap:10px;
+}
+
+.cardActions button{
+    background:none;
+    border:none;
+    color:#bbb;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.cardActions button:hover{
+    color:#e0af56;
+}
+
+.description{
+    color:#b5b5b5;
+    line-height:1.6;
+    margin:20px 0;
+}
+
+.tagContainer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.tagContainer span{
+    background:#2b2416;
+    color:#e0af56;
+    padding:6px 12px;
+    border-radius:5px;
+    font-size:13px;
+}

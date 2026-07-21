@@ -6,8 +6,7 @@ export const Topbar = () => {
     <div className="topbar">
 
       <h1>
-        All Bookmarks
-        <span>0</span>
+        Saved Bookmarks
       </h1>
 
       <button className="addBtn">
