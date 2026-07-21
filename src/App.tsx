@@ -1,6 +1,7 @@
 import React from "react";
 import { Topbar } from "./Components/TopBar";
 import { Sidebar } from "./Components/Sidebar";
+import { BookmarkGrid } from "./Components/BookmarkGrid";
 
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
       <div className="app">
         <Topbar/>
         <Sidebar/>
+        <BookmarkGrid/>
       </div>
     </>
   );
