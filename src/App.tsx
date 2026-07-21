@@ -1,13 +1,12 @@
 import React from "react";
-import { Header } from "./Components/Header";
-import { Hero } from "./Components/Hero";
+import { Topbar } from "./Components/TopBar";
+
 
 const App = () => {
   return (
     <>
       <div className="app">
-        <Header />
-        <Hero/>
+        <Topbar/>
       </div>
     </>
   );
