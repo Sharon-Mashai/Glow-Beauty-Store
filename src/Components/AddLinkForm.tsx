@@ -1,47 +1,75 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Link } from "../types/Link";
 
 interface AddLinkFormProps {
   show: boolean;
   onClose: () => void;
   onAdd: (link: Link) => void;
+  editingLink: Link | null;
 }
 
-export const AddLinkForm = ({show, onClose,onAdd,}: AddLinkFormProps) => {
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
+export const AddLinkForm = ({
+  show,
+  onClose,
+  onAdd,
+  editingLink,
+}: AddLinkFormProps) => {
 
- const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
+  const [formData, setFormData] = useState({
+    title: "",
+    url: "",
+    description: "",
+    tags: "",
+  });
 
-  const newLink: Link = {
-    id: Date.now(),
-    title,
-    url,
-    description,
-    tags: tags
-      .split(",")
-      .map(tag => tag.trim())
-      .filter(tag => tag !== "")
+  useEffect(() => {
+    if (editingLink) {
+      setFormData({
+        title: editingLink.title,
+        url: editingLink.url,
+        description: editingLink.description,
+        tags: editingLink.tags.join(", "),
+      });
+    } else {
+      setFormData({
+        title: "",
+        url: "",
+        description: "",
+        tags: "",
+      });
+    }
+  }, [editingLink]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newLink: Link = {
+      id: editingLink ? editingLink.id : Date.now(),
+      title: formData.title,
+      url: formData.url,
+      description: formData.description,
+      tags: formData.tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== ""),
+    };
+
+    onAdd(newLink);
+
+    setFormData({
+      title: "",
+      url: "",
+      description: "",
+      tags: "",
+    });
+
+    onClose();
   };
 
-  onAdd(newLink);
-
-  setTitle("");
-  setUrl("");
-  setDescription("");
-  setTags("");
-
-  onClose();
-};
   return (
     <div className={`formOverlay ${show ? "show" : ""}`}>
-      <form
-        className="addLinkForm"
-        onSubmit={handleSubmit}
-      >
+      <form className="addLinkForm" onSubmit={handleSubmit}>
+
         <button
           type="button"
           className="closeBtn"
@@ -50,42 +78,65 @@ export const AddLinkForm = ({show, onClose,onAdd,}: AddLinkFormProps) => {
           ✕
         </button>
 
-        <h2>Add New Bookmark</h2>
+        <h2>
+          {editingLink ? "Edit Bookmark" : "Add New Bookmark"}
+        </h2>
 
         <input
           type="text"
           placeholder="Product Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formData.title}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              title: e.target.value,
+            })
+          }
           required
         />
 
         <input
           type="url"
           placeholder="Website URL"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          value={formData.url}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              url: e.target.value,
+            })
+          }
           required
         />
 
         <textarea
           rows={4}
           placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={formData.description}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              description: e.target.value,
+            })
+          }
           required
         />
 
         <input
           type="text"
           placeholder="Tags (comma separated)"
-          value={tags}
-          onChange={(e) => setTags(e.target.value)}
+          value={formData.tags}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              tags: e.target.value,
+            })
+          }
         />
 
         <button type="submit">
-          Save Bookmark
+          {editingLink ? "Update Bookmark" : "Save Bookmark"}
         </button>
+
       </form>
     </div>
   );
