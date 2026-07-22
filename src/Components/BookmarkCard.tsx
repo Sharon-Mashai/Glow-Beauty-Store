@@ -1,13 +1,11 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import { LinkSquare02Icon, Edit02Icon, Delete02Icon,} from "@hugeicons/core-free-icons";
-
 import type { Link } from "../types/Link";
 
-type Props = {
+interface BookmarkCardProps {
   link: Link;
-};
+}
 
-export const BookmarkCard = ({ link }: Props) => {
+export const BookmarkCard = ({
+  link,}: BookmarkCardProps) => {
   return (
     <div className="bookmarkCard">
 
@@ -15,29 +13,15 @@ export const BookmarkCard = ({ link }: Props) => {
 
         <div className="cardTitle">
 
-          <HugeiconsIcon icon={LinkSquare02Icon} />
-
           <div>
+
             <h3>{link.title}</h3>
 
-            <a href={link.url} target="_blank"  rel="noreferrer"
-            >
+            <a href={link.url} target="_blank" rel="noreferrer" >
               {link.url}
             </a>
 
           </div>
-
-        </div>
-
-        <div className="cardActions">
-
-          <button>
-            <HugeiconsIcon icon={Edit02Icon} />
-          </button>
-
-          <button>
-            <HugeiconsIcon icon={Delete02Icon} />
-          </button>
 
         </div>
 

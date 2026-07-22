@@ -1,39 +1,41 @@
 import { useState } from "react";
+import type { Link } from "../types/Link";
 
 interface AddLinkFormProps {
   show: boolean;
   onClose: () => void;
+  onAdd: (link: Link) => void;
 }
 
-export const AddLinkForm = ({
-  show,
-  onClose,
-}: AddLinkFormProps) => {
+export const AddLinkForm = ({show, onClose,onAdd,}: AddLinkFormProps) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
 
-    console.log({
-      title,
-      url,
-      description,
-      tags,
-    });
-
-    alert("Bookmark Saved!");
-
-    setTitle("");
-    setUrl("");
-    setDescription("");
-    setTags("");
-
-    onClose();
+  const newLink: Link = {
+    id: Date.now(),
+    title,
+    url,
+    description,
+    tags: tags
+      .split(",")
+      .map(tag => tag.trim())
+      .filter(tag => tag !== "")
   };
 
+  onAdd(newLink);
+
+  setTitle("");
+  setUrl("");
+  setDescription("");
+  setTags("");
+
+  onClose();
+};
   return (
     <div className={`formOverlay ${show ? "show" : ""}`}>
       <form

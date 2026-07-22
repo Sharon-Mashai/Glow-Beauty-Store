@@ -1,7 +1,11 @@
 import { BookmarkCard } from "./BookmarkCard";
-import { links } from "../data/links";
+import type { Link } from "../types/Link";
 
-export const BookmarkGrid = () => {
+interface BookmarkGridProps {
+  links: Link[];
+}
+
+export const BookmarkGrid = ({ links }: BookmarkGridProps) => {
   return (
     <section className="bookmarkGrid">
 

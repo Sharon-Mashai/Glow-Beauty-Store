@@ -200,7 +200,7 @@ body {
   top: 0;
   right: -450px;
   width: 450px;
-  height: 100vh;
+  height: 60vh;
   background: #1b1b1d;
   transition: 0.35s ease;
   z-index: 999;
