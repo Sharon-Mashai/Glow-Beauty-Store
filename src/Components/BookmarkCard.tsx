@@ -8,9 +8,7 @@ interface BookmarkCardProps {
 }
 
 export const BookmarkCard = ({
-  link,
-  onDelete,
-}: BookmarkCardProps) => {
+  link, onDelete,}: BookmarkCardProps) => {
   return (
     <div className="bookmarkCard">
 
@@ -21,11 +19,7 @@ export const BookmarkCard = ({
           <div>
             <h3>{link.title}</h3>
 
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={link.url} target="_blank"  rel="noreferrer"  >
               {link.url}
             </a>
           </div>
@@ -34,9 +28,7 @@ export const BookmarkCard = ({
 
         <div className="cardActions">
 
-          <button
-            onClick={() => onDelete(link.id)}
-          >
+          <button onClick={() => onDelete(link.id)}  >
             <HugeiconsIcon icon={Delete02Icon} />
           </button>
 
