@@ -6,7 +6,7 @@ body {
   display: flex;
   min-height: 100vh;
  
-  background-color: rgb(200, 195, 195);
+  background-color: rgb(135, 132, 132);
   background-size: cover;
   background-position: center;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -106,12 +106,27 @@ body {
 
 .tags ul {
   list-style: none;
-  color: #0f0e0e;
+  padding: 0;
 }
 
 .tags li {
-  padding: 5px 0;
+  padding: 12px 18px;
+  margin: 8px 20px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: 0.3s;
+  color: black;
+}
+
+.tags li:hover {
+  background: #1b1b1d;
+  color: white;
+}
+
+.activeTag {
+  background: gray;
+  color: black;
+  font-weight: 600;
 }
 .bookmarkCount {
   margin-top: auto;
@@ -196,7 +211,7 @@ body {
 }
 
 .tagContainer span {
-  background: #2b2416;
+  background: #1b1b1d;
   color: white;
   padding: 6px 12px;
   border-radius: 5px;

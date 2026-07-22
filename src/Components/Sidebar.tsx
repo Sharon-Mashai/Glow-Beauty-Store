@@ -4,17 +4,32 @@ import { Search01Icon } from "@hugeicons/core-free-icons";
 interface SidebarProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Sidebar = ({
   searchTerm,
   setSearchTerm,
+  selectedCategory,
+  setSelectedCategory,
 }: SidebarProps) => {
+
+  const categories = [
+    "All",
+    "Cleanser",
+    "Serum",
+    "Moisturizer",
+    "Sunscreen",
+    "Toner",
+  ];
+
   return (
     <aside className="sidebar">
 
       <div className="logo">
-        <h2>Glow Beauty</h2>
+        <h2>GlowVault</h2>
         <p>FACIAL PRODUCT BOOKMARKS</p>
       </div>
 
@@ -30,16 +45,25 @@ export const Sidebar = ({
       </div>
 
       <div className="tags">
+
         <h3>CATEGORIES</h3>
 
         <ul>
-          <li>All</li>
-          <li>Cleansers</li>
-          <li>Serums</li>
-          <li>Moisturizers</li>
-          <li>Sunscreens</li>
-          <li>Toners</li>
+          {categories.map((category) => (
+            <li
+              key={category}
+              className={
+                selectedCategory === category
+                  ? "activeTag"
+                  : ""
+              }
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </li>
+          ))}
         </ul>
+
       </div>
 
     </aside>
