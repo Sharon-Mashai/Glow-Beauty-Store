@@ -82,8 +82,7 @@ export const AddLinkForm = ({
           {editingLink ? "Edit Bookmark" : "Add New Bookmark"}
         </h2>
 
-        <input
-          type="text"
+        <input type="text"
           placeholder="Product Title"
           value={formData.title}
           onChange={(e) =>
@@ -95,8 +94,7 @@ export const AddLinkForm = ({
           required
         />
 
-        <input
-          type="url"
+        <input type="url"
           placeholder="Website URL"
           value={formData.url}
           onChange={(e) =>
@@ -108,8 +106,7 @@ export const AddLinkForm = ({
           required
         />
 
-        <textarea
-          rows={4}
+        <textarea rows={4}
           placeholder="Description"
           value={formData.description}
           onChange={(e) =>
@@ -121,11 +118,7 @@ export const AddLinkForm = ({
           required
         />
 
-        <input
-          type="text"
-          placeholder="Tags (comma separated)"
-          value={formData.tags}
-          onChange={(e) =>
+        <input type="text"  placeholder="Tags (comma separated)"value={formData.tags} onChange={(e) =>
             setFormData({
               ...formData,
               tags: e.target.value,

@@ -22,19 +22,13 @@ const App = () => {
     return initialLinks;
   });
 
-  // Save bookmarks whenever they change
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(links));
   }, [links]);
 
-  // Create + Update
   const saveLink = (link: Link) => {
     if (editingLink) {
-      setLinks(
-        links.map((item) =>
-          item.id === link.id ? link : item
-        )
-      );
+      setLinks(links.map((item) => (item.id === link.id ? link : item)));
 
       setEditingLink(null);
     } else {
@@ -44,14 +38,10 @@ const App = () => {
     setShowForm(false);
   };
 
-  // Delete
   const deleteLink = (id: number) => {
-    setLinks(
-      links.filter((link) => link.id !== id)
-    );
+    setLinks(links.filter((link) => link.id !== id));
   };
 
-  // Edit
   const editLink = (link: Link) => {
     setEditingLink(link);
     setShowForm(true);
@@ -59,11 +49,9 @@ const App = () => {
 
   return (
     <div className="app">
-
       <Sidebar />
 
       <div className="content">
-
         <Topbar
           onAddClick={() => {
             setEditingLink(null);
@@ -71,24 +59,16 @@ const App = () => {
           }}
         />
 
-        <BookmarkGrid
-          links={links}
-          onDelete={deleteLink}
-          onEdit={editLink}
-        />
+        <BookmarkGrid links={links} onDelete={deleteLink} onEdit={editLink} />
 
-        <AddLinkForm
-          show={showForm}
-          onClose={() => {
+        <AddLinkForm show={showForm} onClose={() => {
             setShowForm(false);
             setEditingLink(null);
           }}
           onAdd={saveLink}
           editingLink={editingLink}
         />
-
       </div>
-
     </div>
   );
 };
