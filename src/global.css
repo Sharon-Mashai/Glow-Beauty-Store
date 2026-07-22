@@ -56,9 +56,8 @@ body {
 }
 
 .logo {
-  padding:  25px;
+  padding: 25px;
   border-bottom: 1px solid #242424;
-
 }
 
 .logo h2 {
@@ -194,4 +193,71 @@ body {
   padding: 6px 12px;
   border-radius: 5px;
   font-size: 13px;
+}
+
+.formOverlay {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  width: 450px;
+  height: 100vh;
+  background: #1b1b1d;
+  transition: 0.35s ease;
+  z-index: 999;
+  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.formOverlay.show {
+  right: 0;
+}
+
+.addLinkForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 35px;
+}
+
+.closeBtn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.addLinkForm h2 {
+  margin-bottom: 10px;
+}
+
+.addLinkForm input,
+.addLinkForm textarea {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: white;
+  font-size: 15px;
+}
+
+.addLinkForm textarea {
+  resize: none;
+}
+
+.addLinkForm button[type="submit"] {
+  margin-top: 10px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #735873;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addLinkForm button[type="submit"]:hover {
+  background: #8a6b8a;
 }

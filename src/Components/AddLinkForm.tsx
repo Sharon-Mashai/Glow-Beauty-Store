@@ -1,6 +1,14 @@
 import { useState } from "react";
 
-export const AddLinkForm = () => {
+interface AddLinkFormProps {
+  show: boolean;
+  onClose: () => void;
+}
+
+export const AddLinkForm = ({
+  show,
+  onClose,
+}: AddLinkFormProps) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -13,59 +21,70 @@ export const AddLinkForm = () => {
       title,
       url,
       description,
-      tags
+      tags,
     });
 
-    alert("Bookmark saved!");
+    alert("Bookmark Saved!");
 
     setTitle("");
     setUrl("");
     setDescription("");
     setTags("");
+
+    onClose();
   };
 
   return (
-    <form
-      className="addLinkForm"
-      onSubmit={handleSubmit}
-    >
-      <h2>Add New Bookmark</h2>
+    <div className={`formOverlay ${show ? "show" : ""}`}>
+      <form
+        className="addLinkForm"
+        onSubmit={handleSubmit}
+      >
+        <button
+          type="button"
+          className="closeBtn"
+          onClick={onClose}
+        >
+          ✕
+        </button>
 
-      <input
-        type="text"
-        placeholder="Product Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
+        <h2>Add New Bookmark</h2>
 
-      <input
-        type="url"
-        placeholder="Website URL"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        required
-      />
+        <input
+          type="text"
+          placeholder="Product Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
 
-      <textarea
-        placeholder="Description"
-        rows={4}
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      />
+        <input
+          type="url"
+          placeholder="Website URL"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+        />
 
-      <input
-        type="text"
-        placeholder="Tags (comma separated)"
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-      />
+        <textarea
+          rows={4}
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
 
-      <button type="submit">
-        Save Bookmark
-      </button>
+        <input
+          type="text"
+          placeholder="Tags (comma separated)"
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+        />
 
-    </form>
+        <button type="submit">
+          Save Bookmark
+        </button>
+      </form>
+    </div>
   );
 };
