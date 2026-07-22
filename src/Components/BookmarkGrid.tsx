@@ -1,4 +1,4 @@
-import { BookmarkCard } from "./BookMarkCard";
+import { BookmarkCard } from "./BookmarkCard";
 
 export const BookmarkGrid = () => {
   return (

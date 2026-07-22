@@ -5,16 +5,12 @@ export const Topbar = () => {
   return (
     <div className="topbar">
 
-      <h1>
-        Saved Bookmarks
-      </h1>
+      <h1>Saved Bookmarks</h1>
 
-      <button className="addBtn">
-        <HugeiconsIcon icon={Add01Icon} />
+      <button className="addBtn"> <HugeiconsIcon icon={Add01Icon} />
         Add Bookmark
       </button>
 
     </div>
   );
 };
-
