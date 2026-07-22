@@ -1,12 +1,18 @@
 body {
+  margin: 0;
+  padding: 0;
   background: #0f0f10;
   color: white;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 .app {
   display: flex;
   min-height: 100vh;
-
-  background-color: rgb(135, 132, 132);
+  background: rgb(135, 132, 132);
   background-size: cover;
   background-position: center;
   font-family:
@@ -18,10 +24,9 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-family:
-    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
 }
+
+/*Topbar */
 
 .topbar {
   display: flex;
@@ -31,49 +36,54 @@ body {
 }
 
 .topbar h1 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-size: 40px;
   color: black;
 }
 
 .addBtn {
+  width: 180px;
+  height: 50px;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 14px 20px;
   border: none;
   border-radius: 10px;
-  background: #1b1b1d;
+  background: #323232;
   color: white;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .addBtn:hover {
-  background: rgba(47, 46, 46, 0.66);
+  background: #1b1b1d;
 }
 
+/* Sidebar*/
+
 .sidebar {
-  width: 280px;
+  width: 300px;
   border-right: 1px solid #242424;
   display: flex;
   flex-direction: column;
 }
 
 .logo {
-  padding: 20px;
+  padding: 20px 25px;
   border-bottom: 1px solid #242424;
 }
 
 .logo h2 {
   color: black;
   font-size: 40px;
+  margin: 0;
 }
 
 .logo p {
-  color: #7d7d7d;
+  margin-top: 8px;
+  color: #6b6b6b;
   letter-spacing: 2px;
   font-size: 13px;
 }
@@ -83,42 +93,42 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 230px;
+  height: 50px;
   background: #1b1b1d;
-  padding: 14px;
+  padding: 0 15px;
   border-radius: 10px;
 }
 
 .searchBox input {
   flex: 1;
-  background: none;
+  background: transparent;
   border: none;
-  color: white;
   outline: none;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-.tags {
-  padding: 10x;
+  color: white;
+  font-size: 15px;
+  font-family: inherit;
 }
 
 .tags h3 {
-  color: #0f0e0e;
-  margin-bottom: 20px;
-  position: relative;
-  left: 35px;
+  margin-left: 35px;
+  margin-bottom: 18px;
+  color: black;
 }
 
 .tags ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .tags li {
-  padding: 12px 18px;
   margin: 8px 20px;
+  padding: 12px 18px;
   border-radius: 10px;
+  color: black;
   cursor: pointer;
   transition: 0.3s;
-  color: black;
 }
 
 .tags li:hover {
@@ -128,60 +138,68 @@ body {
 
 .activeTag {
   background: gray;
-  color: black;
+  color: white;
   font-weight: 600;
 }
-.bookmarkCount {
-  margin-top: auto;
-  color: black;
-}
+
+/* BookmarkGrid*/
 
 .bookmarkGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 25px;
-  padding: 30px 40px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  padding: 20px 40px 40px;
 }
 
+/* BookmarkCard */
+
 .bookmarkCard {
-  border: 1px solid #00000016;
-  border-radius: 12px;
-  padding: 20px;
-  transition: 0.3s;
-  height: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 240px;
+  max-height: 240px;
+
+  padding: 22px;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+
   backdrop-filter: blur(8px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  transition: 0.3s;
 }
 
 .bookmarkCard:hover {
-  transform: translateY(-5px);
-  border-color: rgba(128, 128, 128, 0.558);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
-  color: black;
 }
 
 .cardTitle {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
 }
 
 .cardTitle h3 {
-  margin-bottom: 8px;
+  margin: 0 0 8px;
   font-size: 22px;
   color: black;
 }
 
 .cardTitle a {
+  font-size: 14px;
   color: black;
   text-decoration: none;
-  font-size: 14px;
+  word-break: break-word;
 }
 
 .cardActions {
@@ -190,11 +208,11 @@ body {
 }
 
 .cardActions button {
-  background: none;
+  background: transparent;
   border: none;
   color: black;
   cursor: pointer;
-  font-size: 18px;
+  transition: 0.3s;
 }
 
 .cardActions button:hover {
@@ -202,35 +220,41 @@ body {
 }
 
 .description {
+  margin: 18px 0;
   color: black;
-  line-height: 1.6;
-  margin: 20px 0;
+  line-height: 1.5;
+  overflow: hidden;
 }
 
 .tagContainer {
+  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .tagContainer span {
   background: #1b1b1d;
   color: white;
   padding: 6px 12px;
-  border-radius: 5px;
-  font-size: 13px;
+  border-radius: 6px;
+  font-size: 12px;
 }
+/* Add bookmark form*/
 
 .formOverlay {
   position: fixed;
-  top: 0;
-  right: -450px;
-  width: 450px;
-  height: 60vh;
+  top: 50%;
+  right: -100%;
+  transform: translateY(-50%);
+  width: 90%;
+  max-width: 420px;
+  height: 70vh;
   background: #555;
-  transition: 0.35s ease;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.35);
+  transition: right 0.35s ease;
   z-index: 999;
-  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.4);
 }
 
 .formOverlay.show {
@@ -238,11 +262,11 @@ body {
 }
 
 .addLinkForm {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 35px;
+  gap: 16px;
+  height: 100%;
+  padding: 30px;
 }
 
 .closeBtn {
@@ -255,31 +279,39 @@ body {
 }
 
 .addLinkForm h2 {
-  margin-bottom: 10px;
+  margin: 0 0 10px;
 }
 
 .addLinkForm input,
 .addLinkForm textarea {
-  padding: 15px;
+  width: 100%;
+  padding: 14px 16px;
   border: none;
   border-radius: 10px;
   background: #2a2a2a;
   color: white;
   font-size: 15px;
+  font-family: inherit;
 }
 
 .addLinkForm textarea {
-  resize: vertical;
+  resize: none;
+  min-height: 120px;
+  max-height: 120px;
 }
 
 .addLinkForm button[type="submit"] {
-  margin-top: 10px;
+  width: 230px;
+  height: 50px;
   padding: 15px;
+  border-radius: 10px;
+  align-self: center;
   border: none;
   border-radius: 10px;
-  background: #2a2a2a;
+  background: #1b1b1d;
   color: white;
   font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -288,32 +320,33 @@ body {
   background: black;
 }
 
+/*Delete Modal*/
+
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.55);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .deleteModal {
+  width: 360px;
   background: #222;
-  padding: 35px;
   border-radius: 14px;
-  width: 380px;
+  padding: 30px;
   text-align: center;
 }
 
 .deleteModal h2 {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .deleteModal p {
-  color: #bbb;
-
-  margin-bottom: 30px;
+  color: #bdbdbd;
+  margin-bottom: 25px;
 }
 
 .modalButtons {
@@ -322,43 +355,230 @@ body {
   gap: 15px;
 }
 
-.cancelBtn {
-  background: #555;
-  color: white;
-  border: none;
+.cancelBtn,
+.deleteBtn {
   padding: 12px 25px;
-
+  border: none;
   border-radius: 8px;
-
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.cancelBtn {
+  background: #666;
+  color: white;
+}
+
+.cancelBtn:hover {
+  background: #555;
 }
 
 .deleteBtn {
-  bbackground: #555;
-
+  background: #1b1b1d;
   color: white;
-
-  border: none;
-
-  padding: 12px 25px;
-
-  border-radius: 8px;
-
-  cursor: pointer;
 }
+
+.deleteBtn:hover {
+  background: black;
+}
+
+/*Empty State*/
+
 .emptyBookmarks {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
   text-align: center;
   padding: 120px 20px;
 }
 
 .emptyBookmarks h2 {
-  font-size: 34px;
-  margin-bottom: 15px;
-  color: white;
+  font-size: 32px;
+  color: black;
+  margin-bottom: 10px;
 }
 
 .emptyBookmarks p {
-  color: #9b9b9b;
-  font-size: 16px;
+  color: #444;
+}
+
+/*Responsiveness*/
+
+/* 1200px */
+
+@media (max-width: 1200px) {
+  .bookmarkGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .formOverlay {
+    max-width: 400px;
+    height: 70vh;
+  }
+}
+
+/* 1024px */
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 250px;
+  }
+
+  .bookmarkGrid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+  }
+
+  .topbar {
+    padding: 20px;
+  }
+
+  .topbar h1 {
+    font-size: 34px;
+  }
+  .formOverlay {
+    max-width: 380px;
+    height: 68vh;
+  }
+}
+
+/* 768px */
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #242424;
+  }
+
+  .bookmarkGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    padding: 20px;
+  }
+
+  .topbar h1 {
+    font-size: 30px;
+  }
+
+  .addBtn {
+    padding: 12px 18px;
+  }
+
+  .formOverlay {
+    width: 90%;
+    max-width: 360px;
+    height: 65vh;
+    top: 50%;
+    right: -100%;
+    transform: translateY(-50%);
+    border-radius: 12px 0 0 12px;
+  }
+
+  .formOverlay.show {
+    right: 0;
+  }
+}
+
+/* 480px */
+
+@media (max-width: 480px) {
+  .logo h2 {
+    font-size: 30px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .topbar h1 {
+    font-size: 26px;
+  }
+
+  .bookmarkGrid {
+    padding: 15px;
+  }
+
+  .bookmarkCard {
+    min-height: 220px;
+    max-height: 220px;
+    padding: 18px;
+  }
+
+  .cardTitle h3 {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+  .formOverlay {
+    width: 95%;
+    max-width: none;
+    height: 65vh;
+  }
+
+  .addLinkForm {
+    padding: 22px;
+  }
+}
+
+/* 320px */
+
+@media (max-width: 320px) {
+  .topbar h1 {
+    font-size: 22px;
+  }
+
+  .logo h2 {
+    font-size: 24px;
+  }
+
+  .searchBox {
+    margin: 15px;
+  }
+
+  .bookmarkGrid {
+    padding: 10px;
+  }
+
+  .bookmarkCard {
+    padding: 15px;
+  }
+
+  .addBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+  }
+
+  .cancelBtn,
+  .deleteBtn {
+    width: 100%;
+  }
+
+  .formOverlay {
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    right: -100%;
+    transform: none;
+    border-radius: 0;
+  }
+
+  .formOverlay.show {
+    right: 0;
+  }
+
+  .addLinkForm {
+    padding: 18px;
+  }
 }
