@@ -1,15 +1,36 @@
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Edit02Icon, Delete02Icon } from "@hugeicons/core-free-icons";
+import { LinkSquare02Icon, Edit02Icon, Delete02Icon,} from "@hugeicons/core-free-icons";
 
-export const BookmarkCard = () => {
+import type { Link } from "../types/Link";
+
+type Props = {
+  link: Link;
+};
+
+export const BookmarkCard = ({ link }: Props) => {
   return (
     <div className="bookmarkCard">
-      <div className="cardHeader">
-        <h3>CeraVe Hydrating Cleanser</h3>
 
-        <a href="https://www.cerave.com">cerave.com</a>
+      <div className="cardHeader">
+
+        <div className="cardTitle">
+
+          <HugeiconsIcon icon={LinkSquare02Icon} />
+
+          <div>
+            <h3>{link.title}</h3>
+
+            <a href={link.url} target="_blank"  rel="noreferrer"
+            >
+              {link.url}
+            </a>
+
+          </div>
+
+        </div>
 
         <div className="cardActions">
+
           <button>
             <HugeiconsIcon icon={Edit02Icon} />
           </button>
@@ -17,20 +38,25 @@ export const BookmarkCard = () => {
           <button>
             <HugeiconsIcon icon={Delete02Icon} />
           </button>
+
         </div>
+
       </div>
 
       <p className="description">
-        Official cleanser suitable for dry and sensitive skin.
+        {link.description}
       </p>
 
       <div className="tagContainer">
-        <span>#Cleanser</span>
 
-        <span>#DrySkin</span>
+        {link.tags.map((tag) => (
+          <span key={tag}>
+            #{tag}
+          </span>
+        ))}
 
-        <span>#OfficialStore</span>
       </div>
+
     </div>
   );
 };
