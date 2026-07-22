@@ -8,10 +8,16 @@ import { links as initialLinks } from "./data/links";
 import type { Link } from "./types/Link";
 
 const App = () => {
+  // Drawer
   const [showForm, setShowForm] = useState(false);
 
+  // Edit mode
   const [editingLink, setEditingLink] = useState<Link | null>(null);
 
+  // Search
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Bookmarks
   const [links, setLinks] = useState<Link[]>(() => {
     const savedLinks = localStorage.getItem("bookmarks");
 
@@ -22,13 +28,19 @@ const App = () => {
     return initialLinks;
   });
 
+  // Save bookmarks to localStorage
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(links));
   }, [links]);
 
+  // Create + Update
   const saveLink = (link: Link) => {
     if (editingLink) {
-      setLinks(links.map((item) => (item.id === link.id ? link : item)));
+      setLinks(
+        links.map((item) =>
+          item.id === link.id ? link : item
+        )
+      );
 
       setEditingLink(null);
     } else {
@@ -38,18 +50,39 @@ const App = () => {
     setShowForm(false);
   };
 
+  // Delete
   const deleteLink = (id: number) => {
-    setLinks(links.filter((link) => link.id !== id));
+    setLinks(
+      links.filter((link) => link.id !== id)
+    );
   };
 
+  // Edit
   const editLink = (link: Link) => {
     setEditingLink(link);
     setShowForm(true);
   };
 
+  // Search
+  const filteredLinks = links.filter((link) => {
+    const search = searchTerm.toLowerCase();
+
+    return (
+      link.title.toLowerCase().includes(search) ||
+      link.url.toLowerCase().includes(search) ||
+      link.description.toLowerCase().includes(search) ||
+      link.tags.some((tag) =>
+        tag.toLowerCase().includes(search)
+      )
+    );
+  });
+
   return (
     <div className="app">
-      <Sidebar />
+      <Sidebar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
       <div className="content">
         <Topbar
@@ -59,9 +92,15 @@ const App = () => {
           }}
         />
 
-        <BookmarkGrid links={links} onDelete={deleteLink} onEdit={editLink} />
+        <BookmarkGrid
+          links={filteredLinks}
+          onDelete={deleteLink}
+          onEdit={editLink}
+        />
 
-        <AddLinkForm show={showForm} onClose={() => {
+        <AddLinkForm
+          show={showForm}
+          onClose={() => {
             setShowForm(false);
             setEditingLink(null);
           }}

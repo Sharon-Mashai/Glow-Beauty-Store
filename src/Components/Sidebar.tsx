@@ -1,7 +1,15 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Search01Icon } from "@hugeicons/core-free-icons";
 
-export const Sidebar = () => {
+interface SidebarProps {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const Sidebar = ({
+  searchTerm,
+  setSearchTerm,
+}: SidebarProps) => {
   return (
     <aside className="sidebar">
 
@@ -15,7 +23,9 @@ export const Sidebar = () => {
 
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="Search bookmarks..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
@@ -23,17 +33,13 @@ export const Sidebar = () => {
         <h3>CATEGORIES</h3>
 
         <ul>
-          <li>All Products</li>
-          <li>#Cleanser</li>
-          <li>#Serum</li>
-          <li>#Moisturizer</li>
-          <li>#Sunscreen</li>
-          <li>#Toner</li>
-          <li>#Acne Care</li>
-          <li>#Vitamin C</li>
-          <li>#Sensitive Skin</li>
+          <li>All</li>
+          <li>Cleansers</li>
+          <li>Serums</li>
+          <li>Moisturizers</li>
+          <li>Sunscreens</li>
+          <li>Toners</li>
         </ul>
-
       </div>
 
     </aside>
