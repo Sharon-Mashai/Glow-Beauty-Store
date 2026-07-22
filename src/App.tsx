@@ -15,25 +15,25 @@ const App = () => {
     setLinks([...links, newLink]);
   };
 
+  const deleteLink = (id: number) => {
+    setLinks(links.filter((link) => link.id !== id));
+  };
+
   return (
     <div className="app">
-
       <Sidebar />
 
       <div className="content">
-
         <Topbar onAddClick={() => setShowForm(true)} />
 
-        <BookmarkGrid links={links} />
+        <BookmarkGrid links={links} onDelete={deleteLink} />
 
         <AddLinkForm
           show={showForm}
           onClose={() => setShowForm(false)}
           onAdd={addLink}
         />
-
       </div>
-
     </div>
   );
 };
