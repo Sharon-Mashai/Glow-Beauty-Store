@@ -124,6 +124,8 @@ const App = () => {
           onDelete={deleteLink}
           onEdit={editLink}
           onAddClick={handleAddBookmark}
+          selectedCategory={selectedCategory}
+          searchTerm={searchTerm}
         />
 
         <AddLinkForm

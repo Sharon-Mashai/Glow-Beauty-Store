@@ -6,6 +6,8 @@ interface BookmarkGridProps {
   onDelete: (id: number) => void;
   onEdit: (link: Link) => void;
   onAddClick: () => void;
+  selectedCategory: string;
+  searchTerm: string;
 }
 
 export const BookmarkGrid = ({
@@ -13,22 +15,34 @@ export const BookmarkGrid = ({
   onDelete,
   onEdit,
   onAddClick,
+  selectedCategory,
+  searchTerm,
 }: BookmarkGridProps) => {
 
   if (links.length === 0) {
+    const isCategoryFilter = selectedCategory !== "All";
+    const isSearchActive = searchTerm.trim().length > 0;
+
     return (
       <section className="bookmarkGrid">
         <div className="emptyBookmarks">
-          <h2>No Bookmarks Found</h2>
+          <h2>
+            {isCategoryFilter && !isSearchActive
+              ? "No bookmark found under this category"
+              : "No Bookmarks Found"}
+          </h2>
 
           <p>
-            Try changing your search, selecting another category,
-            or add your first bookmark.
+            {isCategoryFilter && !isSearchActive
+              ? `Try selecting another category.`
+              : "Try changing your search, selecting another category, or add your first bookmark."}
           </p>
 
-          <button type="button" className="emptyAddBtn" onClick={onAddClick}>
-            Add your first bookmark
-          </button>
+          {!isCategoryFilter && (
+            <button type="button" className="emptyAddBtn" onClick={onAddClick}>
+              Add your first bookmark
+            </button>
+          )}
         </div>
       </section>
     );
