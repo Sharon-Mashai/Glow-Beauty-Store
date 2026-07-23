@@ -5,12 +5,14 @@ interface BookmarkGridProps {
   links: Link[];
   onDelete: (id: number) => void;
   onEdit: (link: Link) => void;
+  onAddClick: () => void;
 }
 
 export const BookmarkGrid = ({
   links,
   onDelete,
   onEdit,
+  onAddClick,
 }: BookmarkGridProps) => {
 
   if (links.length === 0) {
@@ -21,8 +23,12 @@ export const BookmarkGrid = ({
 
           <p>
             Try changing your search, selecting another category,
-            or add a new bookmark.
+            or add your first bookmark.
           </p>
+
+          <button type="button" className="emptyAddBtn" onClick={onAddClick}>
+            Add your first bookmark
+          </button>
         </div>
       </section>
     );

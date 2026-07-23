@@ -1,22 +1,38 @@
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Add01Icon } from "@hugeicons/core-free-icons";
+import { Add01Icon, Search01Icon } from "@hugeicons/core-free-icons";
 
 interface TopbarProps {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   onAddClick: () => void;
 }
 
-export const Topbar = ({ onAddClick }: TopbarProps) => {
+export const Topbar = ({
+  searchTerm,
+  setSearchTerm,
+  onAddClick,
+}: TopbarProps) => {
   return (
     <div className="topbar">
       <h1>Saved Bookmarks</h1>
 
-      <button
-        className="addBtn"
-        onClick={onAddClick}
-      >
-        <HugeiconsIcon icon={Add01Icon} />
-        Add Bookmark
-      </button>
+      <div className="topbarActions">
+        <div className="searchBox">
+          <HugeiconsIcon icon={Search01Icon} />
+
+          <input
+            type="text"
+            placeholder="Search bookmarks..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <button className="addBtn" onClick={onAddClick}>
+          <HugeiconsIcon icon={Add01Icon} />
+          Add Bookmark
+        </button>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,6 @@ export interface DeleteModalProps {
   show: boolean;
 
   onCancel: () => void;
-
   onConfirm: () => void;
 
 }

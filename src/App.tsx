@@ -2,38 +2,30 @@ import { useState, useEffect } from "react";
 import { Sidebar } from "./Components/Sidebar";
 import { Topbar } from "./Components/Topbar";
 import { BookmarkGrid } from "./Components/BookmarkGrid";
-import { AddLinkForm } from "./Components/AddLinkForm";
+import  AddLinkForm  from "./Components/AddLinkForm";
 import { DeleteModal } from "./Components/DeleteModal";
-
-import { links as initialLinks } from "./data/links";
 import type { Link } from "./types/Link";
 
 const App = () => {
-  // Form Drawer
+  
   const [showForm, setShowForm] = useState(false);
-
   // Edit Bookmark
   const [editingLink, setEditingLink] = useState<Link | null>(null);
-
   // Search
   const [searchTerm, setSearchTerm] = useState("");
-
   // Sidebar Category
   const [selectedCategory, setSelectedCategory] = useState("All");
-
   // Delete Modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [linkToDelete, setLinkToDelete] = useState<number | null>(null);
-
   // Bookmarks
   const [links, setLinks] = useState<Link[]>(() => {
-    const savedLinks = localStorage.getItem("bookmarks");
-
-    if (savedLinks) {
-      return JSON.parse(savedLinks);
+    try {
+      const savedLinks = localStorage.getItem("bookmarks");
+      return savedLinks ? JSON.parse(savedLinks) : [];
+    } catch {
+      return [];
     }
-
-    return initialLinks;
   });
 
   // Save to localStorage
@@ -43,18 +35,15 @@ const App = () => {
 
   // Add / Update
   const saveLink = (link: Link) => {
-    if (editingLink) {
-      setLinks(
-        links.map((item) =>
-          item.id === link.id ? link : item
-        )
-      );
+    setLinks((currentLinks) => {
+      if (editingLink) {
+        return currentLinks.map((item) => (item.id === link.id ? link : item));
+      }
 
-      setEditingLink(null);
-    } else {
-      setLinks([...links, link]);
-    }
+      return [...currentLinks, link];
+    });
 
+    setEditingLink(null);
     setShowForm(false);
   };
 
@@ -82,6 +71,11 @@ const App = () => {
     setShowForm(true);
   };
 
+  const handleAddBookmark = () => {
+    setEditingLink(null);
+    setShowForm(true);
+  };
+
   // Search + Category Filter
   const filteredLinks = links.filter((link) => {
     const search = searchTerm.toLowerCase();
@@ -104,27 +98,26 @@ const App = () => {
   return (
     <div className="app">
       <Sidebar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
 
       <div className="content">
         <Topbar
-          onAddClick={() => {
-            setEditingLink(null);
-            setShowForm(true);
-          }}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          onAddClick={handleAddBookmark}
         />
 
         <BookmarkGrid
           links={filteredLinks}
           onDelete={deleteLink}
           onEdit={editLink}
+          onAddClick={handleAddBookmark}
         />
 
         <AddLinkForm
+          key={`${showForm ? "open" : "closed"}-${editingLink?.id ?? "new"}`}
           show={showForm}
           onClose={() => {
             setShowForm(false);

@@ -12,7 +12,7 @@ body {
 .app {
   display: flex;
   min-height: 100vh;
-  background: rgb(135, 132, 132);
+  background: rgb(186, 182, 182);
   background-size: cover;
   background-position: center;
   font-family:
@@ -33,11 +33,23 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 25px 40px;
+  gap: 20px;
 }
 
 .topbar h1 {
   font-size: 40px;
   color: black;
+  margin: 0;
+  position: relative;
+  top: 30px;
+}
+
+.topbarActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  top: 30px;
 }
 
 .addBtn {
@@ -83,19 +95,18 @@ body {
 
 .logo p {
   margin-top: 8px;
-  color: #6b6b6b;
+  color: #151414;
   letter-spacing: 2px;
   font-size: 13px;
 }
 
 .searchBox {
-  margin: 25px;
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 230px;
+  width: 260px;
   height: 50px;
-  background: #1b1b1d;
+  background: #323232;
   padding: 0 15px;
   border-radius: 10px;
 }
@@ -108,6 +119,11 @@ body {
   color: white;
   font-size: 15px;
   font-family: inherit;
+}
+
+.searchBox input::placeholder {
+  color: white;
+  opacity: 1;
 }
 
 .tags h3 {
@@ -137,8 +153,8 @@ body {
 }
 
 .activeTag {
-  background: gray;
-  color: white;
+  background: transparent;
+  color: black;
   font-weight: 600;
 }
 
@@ -157,19 +173,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   min-height: 240px;
   max-height: 240px;
-
   padding: 22px;
-
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 14px;
-
   backdrop-filter: blur(8px);
-
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-
   transition: 0.3s;
 }
 
@@ -244,28 +254,28 @@ body {
 
 .formOverlay {
   position: fixed;
-  top: 50%;
-  right: -100%;
-  transform: translateY(-50%);
-  width: 90%;
-  max-width: 420px;
-  height: 70vh;
-  background: #555;
-  border-radius: 12px 0 0 12px;
-  box-shadow: -8px 0 20px rgba(0, 0, 0, 0.35);
-  transition: right 0.35s ease;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 999;
+  padding: 20px;
 }
 
-.formOverlay.show {
-  right: 0;
+.formOverlay:not(.show) {
+  display: none;
 }
 
 .addLinkForm {
+  width: 100%;
+  max-width: 420px;
+  background: rgb(186, 182, 182);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 100%;
   padding: 30px;
 }
 
@@ -386,18 +396,41 @@ body {
 
 .emptyBookmarks {
   grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 120px 20px;
+  gap: 12px;
 }
 
 .emptyBookmarks h2 {
   font-size: 32px;
   color: black;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .emptyBookmarks p {
   color: #444;
+  margin: 0;
+}
+
+.emptyAddBtn {
+  margin-top: 8px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #323232;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.emptyAddBtn:hover {
+  background: #1b1b1d;
 }
 
 /*Responsiveness*/
