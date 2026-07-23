@@ -283,13 +283,14 @@ body {
   align-self: flex-end;
   background: none;
   border: none;
-  color: white;
+  color:black;
   font-size: 28px;
   cursor: pointer;
 }
 
 .addLinkForm h2 {
   margin: 0 0 10px;
+  color: black;
 }
 
 .addLinkForm input,

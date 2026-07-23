@@ -1,6 +1,6 @@
 import type { Link } from "../types/Link";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Edit02Icon, Delete02Icon } from "@hugeicons/core-free-icons";
+import { Edit03Icon, Delete02Icon } from "@hugeicons/core-free-icons";
 
 interface BookmarkCardProps {
   link: Link;
@@ -24,7 +24,7 @@ export const BookmarkCard = ({ link, onDelete, onEdit }: BookmarkCardProps) => {
 
         <div className="cardActions">
           <button onClick={() => onEdit(link)}>
-            <HugeiconsIcon icon={Edit02Icon} />
+            <HugeiconsIcon icon={Edit03Icon} />
           </button>
 
           <button onClick={() => onDelete(link.id)}>
