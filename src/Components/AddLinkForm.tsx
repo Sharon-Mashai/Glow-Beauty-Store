@@ -60,7 +60,11 @@ export default function AddLinkForm({
 
         <h2>{editingLink ? "Edit Bookmark" : "Add New Bookmark"}</h2>
 
+        <label className="formFieldLabel" htmlFor="bookmark-title">
+          Product Title
+        </label>
         <input
+          id="bookmark-title"
           type="text"
           placeholder="Product Title"
           value={title}
@@ -68,7 +72,11 @@ export default function AddLinkForm({
           required
         />
 
+        <label className="formFieldLabel" htmlFor="bookmark-url">
+          Website URL
+        </label>
         <input
+          id="bookmark-url"
           type="url"
           placeholder="Website URL"
           value={url}
@@ -76,7 +84,11 @@ export default function AddLinkForm({
           required
         />
 
+        <label className="formFieldLabel" htmlFor="bookmark-description">
+          Description
+        </label>
         <textarea
+          id="bookmark-description"
           rows={4}
           placeholder="Description"
           value={description}
@@ -84,7 +96,11 @@ export default function AddLinkForm({
           required
         />
 
+        <label className="formFieldLabel" htmlFor="bookmark-tags">
+          Tags
+        </label>
         <input
+          id="bookmark-tags"
           type="text"
           placeholder="Tags (comma separated)"
           value={tags}

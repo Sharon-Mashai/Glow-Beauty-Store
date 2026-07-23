@@ -15,9 +15,7 @@ body {
   background: rgb(186, 182, 182);
   background-size: cover;
   background-position: center;
-  font-family:
-    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
-    Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 .content {
@@ -32,6 +30,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 25px 40px;
   gap: 20px;
 }
@@ -40,16 +39,13 @@ body {
   font-size: 40px;
   color: black;
   margin: 0;
-  position: relative;
-  top: 30px;
 }
 
 .topbarActions {
   display: flex;
   align-items: center;
   gap: 12px;
-  position: relative;
-  top: 30px;
+  flex-wrap: wrap;
 }
 
 .addBtn {
@@ -78,6 +74,7 @@ body {
 
 .sidebar {
   width: 300px;
+  flex-shrink: 0;
   border-right: 1px solid #242424;
   display: flex;
   flex-direction: column;
@@ -164,7 +161,7 @@ body {
 
 .bookmarkGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
   padding: 20px 40px 40px;
 }
@@ -257,7 +254,7 @@ body {
 .formOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.72);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -270,15 +267,14 @@ body {
 }
 
 .addLinkForm {
-  width: 100%;
-  max-width: 420px;
-  background: rgb(186, 182, 182);
+  width: min(100%, 420px);
+  background: rgba(0, 0, 0, 0.55);
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 30px;
+  box-shadow: none !important;
 }
 
 .closeBtn {
@@ -293,6 +289,12 @@ body {
 .addLinkForm h2 {
   margin: 0 0 10px;
   color: black;
+}
+
+.formFieldLabel {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .addLinkForm input,
@@ -438,15 +440,23 @@ body {
 
 /*Responsiveness*/
 
+@media (max-width: 768px) {
+  .formOverlay {
+    padding: 16px;
+  }
+
+  .addLinkForm {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px;
+  }
+}
+
 /* 1200px */
 
 @media (max-width: 1200px) {
   .bookmarkGrid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .formOverlay {
-    max-width: 400px;
-    height: 70vh;
   }
 }
 
@@ -458,7 +468,7 @@ body {
   }
 
   .bookmarkGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 20px;
   }
 
@@ -468,10 +478,6 @@ body {
 
   .topbar h1 {
     font-size: 34px;
-  }
-  .formOverlay {
-    max-width: 380px;
-    height: 68vh;
   }
 }
 
@@ -494,28 +500,24 @@ body {
 
   .topbar {
     padding: 20px;
+    align-items: flex-start;
   }
 
   .topbar h1 {
     font-size: 30px;
   }
 
+  .topbarActions {
+    width: 100%;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
   .addBtn {
+    width: 100%;
     padding: 12px 18px;
-  }
-
-  .formOverlay {
-    width: 90%;
-    max-width: 360px;
-    height: 65vh;
-    top: 50%;
-    right: -100%;
-    transform: translateY(-50%);
-    border-radius: 12px 0 0 12px;
-  }
-
-  .formOverlay.show {
-    right: 0;
   }
 }
 
@@ -553,11 +555,6 @@ body {
   .description {
     font-size: 14px;
   }
-  .formOverlay {
-    width: 95%;
-    max-width: none;
-    height: 65vh;
-  }
 
   .addLinkForm {
     padding: 22px;
@@ -573,10 +570,6 @@ body {
 
   .logo h2 {
     font-size: 24px;
-  }
-
-  .searchBox {
-    margin: 15px;
   }
 
   .bookmarkGrid {
@@ -599,19 +592,6 @@ body {
   .cancelBtn,
   .deleteBtn {
     width: 100%;
-  }
-
-  .formOverlay {
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    right: -100%;
-    transform: none;
-    border-radius: 0;
-  }
-
-  .formOverlay.show {
-    right: 0;
   }
 
   .addLinkForm {

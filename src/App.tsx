@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Sidebar } from "./Components/Sidebar";
 import { Topbar } from "./Components/Topbar";
 import { BookmarkGrid } from "./Components/BookmarkGrid";
-import  AddLinkForm  from "./Components/AddLinkForm";
+import AddLinkForm from "./Components/AddLinkForm";
 import { DeleteModal } from "./Components/DeleteModal";
 import type { Link } from "./types/Link";
 
@@ -32,6 +32,14 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(links));
   }, [links]);
+
+  useEffect(() => {
+    document.body.style.overflow = showForm ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showForm]);
 
   // Add / Update
   const saveLink = (link: Link) => {
