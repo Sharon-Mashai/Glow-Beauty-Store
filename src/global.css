@@ -53,18 +53,19 @@ body {
 }
 
 .addBtn {
-  width: 180px;
+  width: 230px;
   height: 50px;
   display: flex;
-  justify-content: center;
+  
   align-items: center;
+  padding: 0 15px;
   gap: 10px;
   border: none;
   border-radius: 10px;
   background: #323232;
   color: white;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -104,25 +105,26 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 260px;
+  width: 230px;
   height: 50px;
-  background: #323232;
+  color: black;
   padding: 0 15px;
-  border-radius: 10px;
+  border: 40px;
+  border-color: rgb(20, 19, 19);
 }
 
 .searchBox input {
   flex: 1;
   background: transparent;
   border: none;
-  outline: none;
-  color: white;
+  
+  color:black;
   font-size: 15px;
   font-family: inherit;
 }
 
 .searchBox input::placeholder {
-  color: white;
+  color: black;
   opacity: 1;
 }
 
@@ -283,7 +285,7 @@ body {
   align-self: flex-end;
   background: none;
   border: none;
-  color:black;
+  color: black;
   font-size: 28px;
   cursor: pointer;
 }
@@ -314,7 +316,7 @@ body {
 .addLinkForm button[type="submit"] {
   width: 230px;
   height: 50px;
-  padding: 15px;
+  padding: 0 15px;
   border-radius: 10px;
   align-self: center;
   border: none;
@@ -345,7 +347,7 @@ body {
 
 .deleteModal {
   width: 360px;
-  background: #222;
+  background: #2222229f;
   border-radius: 14px;
   padding: 30px;
   text-align: center;
@@ -376,21 +378,21 @@ body {
 }
 
 .cancelBtn {
-  background: #666;
-  color: white;
+  background: white;
+  color: black;
 }
 
 .cancelBtn:hover {
-  background: #555;
+   background:rgb(37, 36, 36);
 }
 
 .deleteBtn {
-  background: #1b1b1d;
+  background:black;
   color: white;
 }
 
 .deleteBtn:hover {
-  background: black;
+  background:rgb(37, 36, 36);
 }
 
 /*Empty State*/

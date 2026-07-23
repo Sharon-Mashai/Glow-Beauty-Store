@@ -90,7 +90,9 @@ const App = () => {
 
     const matchesCategory =
       selectedCategory === "All" ||
-      link.tags.includes(selectedCategory);
+      link.tags.some(
+        (tag) => tag.toLowerCase() === selectedCategory.toLowerCase()
+      );
 
     return matchesSearch && matchesCategory;
   });
