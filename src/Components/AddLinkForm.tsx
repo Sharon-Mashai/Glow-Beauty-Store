@@ -15,10 +15,10 @@ export default function AddLinkForm({
   onAdd,
   editingLink,
 }: AddLinkFormProps) {
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
+  const [title, setTitle] = useState(editingLink?.title ?? "");
+  const [url, setUrl] = useState(editingLink?.url ?? "");
+  const [description, setDescription] = useState(editingLink?.description ?? "");
+  const [tags, setTags] = useState(editingLink?.tags.join(", ") ?? "");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
