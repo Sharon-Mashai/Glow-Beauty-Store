@@ -7,7 +7,6 @@ interface BookmarkGridProps {
   onDelete: (id: number) => void;
   onEdit: (link: Link) => void;
   onAddClick: () => void;
-  selectedCategory: string;
   searchTerm: string;
 }
 
@@ -16,41 +15,58 @@ export const BookmarkGrid = ({
   onDelete,
   onEdit,
   onAddClick,
-  selectedCategory,
   searchTerm,
 }: BookmarkGridProps) => {
+
   if (links.length === 0) {
-    const isCategoryFilter = selectedCategory !== "All";
+
     const isSearchActive = searchTerm.trim().length > 0;
 
+    // Search returned no results
+    if (isSearchActive) {
+      return (
+        <section className="bookmarkGrid">
+          <div className="emptyBookmarks">
+            <h2>No bookmarks found</h2>
+
+            <p>
+              We couldn't find any bookmarks matching
+              <strong> "{searchTerm}"</strong>.
+              <br />
+              Try another keyword or check your spelling.
+            </p>
+          </div>
+        </section>
+      );
+    }
+
+    // No bookmarks saved yet
     return (
       <section className="bookmarkGrid">
         <div className="emptyBookmarks">
 
           <div className="emptyIcon">
-            <img src={illustrationImage} alt="Bookmark illustration" className="emptyIllustration" />
+            <img
+              src={illustrationImage}
+              alt="Bookmark illustration"
+              className="emptyIllustration"
+            />
           </div>
 
-          <h2>
-            {isCategoryFilter && !isSearchActive
-              ? "No bookmarks in this category"
-              : "Your beauty shelf is empty"}
-          </h2>
+          <h2>Your beauty shelf is empty</h2>
 
           <p>
-            {isCategoryFilter && !isSearchActive
-              ? "Try selecting another category to discover your saved products."
-              : "Start building your skincare collection by saving your favourite cleansers, serums, moisturisers, sunscreens and other beauty products."}
+            Start building your skincare collection by saving your favourite
+            cleansers, serums, moisturisers, sunscreens and other beauty
+            products.
           </p>
 
-          {!isCategoryFilter && (
-            <button
-              className="emptyAddBtn"
-              onClick={onAddClick}
-            >
-              Add your first bookmark
-            </button>
-          )}
+          <button
+            className="emptyAddBtn"
+            onClick={onAddClick}
+          >
+            Add your first bookmark
+          </button>
 
         </div>
       </section>

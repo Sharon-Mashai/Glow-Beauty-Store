@@ -7,7 +7,6 @@ import { DeleteModal } from "./Components/DeleteModal";
 import type { Link } from "./types/Link";
 
 const App = () => {
-  
   const [showForm, setShowForm] = useState(false);
   // Edit Bookmark
   const [editingLink, setEditingLink] = useState<Link | null>(null);
@@ -64,9 +63,7 @@ const App = () => {
   // Confirm Delete
   const confirmDelete = () => {
     if (linkToDelete !== null) {
-      setLinks(
-        links.filter((link) => link.id !== linkToDelete)
-      );
+      setLinks(links.filter((link) => link.id !== linkToDelete));
     }
 
     setLinkToDelete(null);
@@ -92,14 +89,12 @@ const App = () => {
       link.title.toLowerCase().includes(search) ||
       link.url.toLowerCase().includes(search) ||
       link.description.toLowerCase().includes(search) ||
-      link.tags.some((tag) =>
-        tag.toLowerCase().includes(search)
-      );
+      link.tags.some((tag) => tag.toLowerCase().includes(search));
 
     const matchesCategory =
       selectedCategory === "All" ||
       link.tags.some(
-        (tag) => tag.toLowerCase() === selectedCategory.toLowerCase()
+        (tag) => tag.toLowerCase() === selectedCategory.toLowerCase(),
       );
 
     return matchesSearch && matchesCategory;
@@ -117,25 +112,24 @@ const App = () => {
             onAddClick={handleAddBookmark}
           />
 
-        <BookmarkGrid
-          links={filteredLinks}
-          onDelete={deleteLink}
-          onEdit={editLink}
-          onAddClick={handleAddBookmark}
-          selectedCategory={selectedCategory}
-          searchTerm={searchTerm}
-        />
+          <BookmarkGrid
+            links={filteredLinks}
+            onDelete={deleteLink}
+            onEdit={editLink}
+            onAddClick={handleAddBookmark}
+            searchTerm={searchTerm}
+          />
 
-        <AddLinkForm
-          key={`${showForm ? "open" : "closed"}-${editingLink?.id ?? "new"}`}
-          show={showForm}
-          onClose={() => {
-            setShowForm(false);
-            setEditingLink(null);
-          }}
-          onAdd={saveLink}
-          editingLink={editingLink}
-        />
+          <AddLinkForm
+            key={`${showForm ? "open" : "closed"}-${editingLink?.id ?? "new"}`}
+            show={showForm}
+            onClose={() => {
+              setShowForm(false);
+              setEditingLink(null);
+            }}
+            onAdd={saveLink}
+            editingLink={editingLink}
+          />
 
           <DeleteModal
             show={showDeleteModal}
