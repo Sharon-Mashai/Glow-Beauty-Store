@@ -1,5 +1,6 @@
 import { BookmarkCard } from "./BookmarkCard";
 import type { Link } from "../types/Link";
+import illustrationImage from "../assets/images/IllustrationImage.png";
 
 interface BookmarkGridProps {
   links: Link[];
@@ -18,7 +19,6 @@ export const BookmarkGrid = ({
   selectedCategory,
   searchTerm,
 }: BookmarkGridProps) => {
-
   if (links.length === 0) {
     const isCategoryFilter = selectedCategory !== "All";
     const isSearchActive = searchTerm.trim().length > 0;
@@ -26,23 +26,32 @@ export const BookmarkGrid = ({
     return (
       <section className="bookmarkGrid">
         <div className="emptyBookmarks">
+
+          <div className="emptyIcon">
+            <img src={illustrationImage} alt="Bookmark illustration" className="emptyIllustration" />
+          </div>
+
           <h2>
             {isCategoryFilter && !isSearchActive
-              ? "No bookmark found under this category"
-              : "No Bookmarks Found"}
+              ? "No bookmarks in this category"
+              : "Your beauty shelf is empty"}
           </h2>
 
           <p>
             {isCategoryFilter && !isSearchActive
-              ? `Try selecting another category.`
-              : "Try changing your search, selecting another category, or add your first bookmark."}
+              ? "Try selecting another category to discover your saved products."
+              : "Start building your skincare collection by saving your favourite cleansers, serums, moisturisers, sunscreens and other beauty products."}
           </p>
 
           {!isCategoryFilter && (
-            <button type="button" className="emptyAddBtn" onClick={onAddClick}>
+            <button
+              className="emptyAddBtn"
+              onClick={onAddClick}
+            >
               Add your first bookmark
             </button>
           )}
+
         </div>
       </section>
     );

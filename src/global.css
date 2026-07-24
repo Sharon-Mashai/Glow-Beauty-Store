@@ -3,6 +3,7 @@ body {
   padding: 0;
   background: #0f0f10;
   color: white;
+  overflow: hidden;
 }
 
 * {
@@ -10,42 +11,89 @@ body {
 }
 
 .app {
-  display: flex;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
   background: rgb(186, 182, 182);
-  background-size: cover;
-  background-position: center;
+
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.pageShell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 0 24px 24px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y:hidden ;
 }
 
 /*Topbar */
 
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 25px 40px;
-  gap: 20px;
+.topbar{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding:24px 0;
+}
+.topbarHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+.topbarRight{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
 .topbar h1 {
-  font-size: 40px;
+  font-size: 32px;
   color: black;
   margin: 0;
 }
 
 .topbarActions {
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.searchRow {
+  display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.categoryDropdown{
+    align-self:flex-start;
+}
+
+.categoryDropdown select{
+    width:190px;
+    height:50px;
+    border:none;
+    border-radius:10px;
+    padding:0 15px;
+    background:#323232;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
 }
 
 .addBtn {
@@ -70,44 +118,76 @@ body {
   background: #1b1b1d;
 }
 
-/* Sidebar*/
+/* Navbar */
 
-.sidebar {
-  width: 300px;
-  flex-shrink: 0;
-  border-right: 1px solid #242424;
+.topNavBar {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 24px 18px;
+  background: rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  position: relative;
 }
 
 .logo {
-  padding: 20px 25px;
-  border-bottom: 1px solid #242424;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .logo h2 {
   color: black;
-  font-size: 40px;
+  font-size: 34px;
   margin: 0;
+  letter-spacing: 0.04em;
 }
 
 .logo p {
-  margin-top: 8px;
+  margin: 4px 0 0;
   color: #151414;
-  letter-spacing: 2px;
-  font-size: 13px;
+  letter-spacing: 0.24em;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.topNavControls {
+  display: none;
+}
+
+.categoryDropdown select {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 999px;
+  background: #1f1f22;
+  color: white;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.categoryDropdown select:hover {
+  background: #0f0f10;
+}
+
+.topbarCategoryDropdown {
+  display: flex;
+  align-items: center;
 }
 
 .searchBox {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 230px;
+  width: min(100%, 230px);
   height: 50px;
   color: black;
   padding: 0 15px;
   border: 40px;
   border-color: rgb(20, 19, 19);
+  flex: 1 1 220px;
 }
 
 .searchBox input {
@@ -125,45 +205,16 @@ body {
   opacity: 1;
 }
 
-.tags h3 {
-  margin-left: 35px;
-  margin-bottom: 18px;
-  color: black;
-}
-
-.tags ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.tags li {
-  margin: 8px 20px;
-  padding: 12px 18px;
-  border-radius: 10px;
-  color: black;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.tags li:hover {
-  background: #1b1b1d;
-  color: white;
-}
-
-.activeTag {
-  background: transparent;
-  color: black;
-  font-weight: 600;
-}
 
 /* BookmarkGrid*/
 
 .bookmarkGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 24px;
-  padding: 20px 40px 40px;
+  padding: 20px 0 40px;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* BookmarkCard */
@@ -175,6 +226,8 @@ body {
   min-height: 240px;
   max-height: 240px;
   padding: 22px;
+  width: 100%;
+  min-width: 0;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 14px;
   backdrop-filter: blur(8px);
@@ -268,20 +321,20 @@ body {
 
 .addLinkForm {
   width: min(100%, 420px);
-  background: rgba(0, 0, 0, 0.55);
+  background:white;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 30px;
-  box-shadow: none !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .closeBtn {
   align-self: flex-end;
   background: none;
   border: none;
-  color: white;
+  color: black;
   font-size: 28px;
   cursor: pointer;
 }
@@ -292,7 +345,7 @@ body {
 }
 
 .formFieldLabel {
-  color: white;
+  color: black;
   font-size: 14px;
   font-weight: 600;
 }
@@ -303,10 +356,15 @@ body {
   padding: 14px 16px;
   border: none;
   border-radius: 10px;
-  background: #2a2a2a;
+  background: #2f2f2f;
   color: white;
   font-size: 15px;
   font-family: inherit;
+}
+
+.addLinkForm input::placeholder,
+.addLinkForm textarea::placeholder {
+  color: #b5b5b5;
 }
 
 .addLinkForm textarea {
@@ -323,7 +381,7 @@ body {
   align-self: center;
   border: none;
   border-radius: 10px;
-  background: #1b1b1d;
+  background: black;
   color: white;
   font-size: 15px;
   font-weight: 600;
@@ -396,46 +454,89 @@ body {
 .deleteBtn:hover {
   background:rgb(37, 36, 36);
 }
-
-/*Empty State*/
+/* Empty State */
 
 .emptyBookmarks {
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 120px 20px;
-  gap: 12px;
+
+  min-height: calc(100vh - 220px);
+
+  width: 100%;
+  max-width: 100%;
+
+  padding: 0 20px;
+  transform: translateY(-50px);
+
+  animation: fadeUp .6s ease;
+}
+
+.emptyIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.emptyIllustration {
+  width: 420px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.98;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.14));
 }
 
 .emptyBookmarks h2 {
-  font-size: 32px;
-  color: black;
-  margin: 0;
+  margin: 0 0 12px;
+  font-size: 34px;
+  color: #222;
 }
 
 .emptyBookmarks p {
-  color: #444;
-  margin: 0;
+  max-width: 520px;
+  margin: 0 0 28px;
+  line-height: 1.6;
+  color: #555;
+  font-size: 16px;
 }
 
 .emptyAddBtn {
-  margin-top: 8px;
-  padding: 12px 22px;
+  width: 230px;
+  height: 50px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #323232;
   color: white;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .emptyAddBtn:hover {
-  background: #1b1b1d;
+  background: black;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
 }
 
 /*Responsiveness*/
@@ -463,35 +564,43 @@ body {
 /* 1024px */
 
 @media (max-width: 1024px) {
-  .sidebar {
-    width: 250px;
-  }
-
   .bookmarkGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 20px;
+    padding: 20px 0;
   }
 
   .topbar {
-    padding: 20px;
+    padding: 20px 0;
   }
 
   .topbar h1 {
-    font-size: 34px;
+    font-size: 30px;
   }
 }
 
 /* 768px */
 
 @media (max-width: 768px) {
-  .app {
+  .topNavBar {
     flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 16px;
   }
 
-  .sidebar {
+  .topNavControls {
+    position: static;
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #242424;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .categoryDropdown {
+    width: 100%;
+  }
+
+  .categoryDropdown select {
+    width: 100%;
   }
 
   .bookmarkGrid {
@@ -499,16 +608,23 @@ body {
   }
 
   .topbar {
-    padding: 20px;
+    padding: 20px 0;
     align-items: flex-start;
   }
 
   .topbar h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .topbarActions {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchRow {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .searchBox {
@@ -539,13 +655,21 @@ body {
   }
 
   .bookmarkGrid {
-    padding: 15px;
+    padding: 15px 0;
   }
 
   .bookmarkCard {
     min-height: 220px;
     max-height: 220px;
     padding: 18px;
+  }
+
+  .emptyBookmarks {
+    padding: 24px 12px;
+  }
+
+  .emptyIllustration {
+    width: 140px;
   }
 
   .cardTitle h3 {

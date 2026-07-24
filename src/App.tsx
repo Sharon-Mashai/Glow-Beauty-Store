@@ -14,7 +14,7 @@ const App = () => {
   // Search
   const [searchTerm, setSearchTerm] = useState("");
   // Sidebar Category
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory] = useState("All");
   // Delete Modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [linkToDelete, setLinkToDelete] = useState<number | null>(null);
@@ -107,17 +107,15 @@ const App = () => {
 
   return (
     <div className="app">
-      <Sidebar
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
+      <div className="pageShell">
+        <Sidebar />
 
-      <div className="content">
-        <Topbar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          onAddClick={handleAddBookmark}
-        />
+        <div className="content">
+          <Topbar
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            onAddClick={handleAddBookmark}
+          />
 
         <BookmarkGrid
           links={filteredLinks}
@@ -139,14 +137,15 @@ const App = () => {
           editingLink={editingLink}
         />
 
-        <DeleteModal
-          show={showDeleteModal}
-          onCancel={() => {
-            setShowDeleteModal(false);
-            setLinkToDelete(null);
-          }}
-          onConfirm={confirmDelete}
-        />
+          <DeleteModal
+            show={showDeleteModal}
+            onCancel={() => {
+              setShowDeleteModal(false);
+              setLinkToDelete(null);
+            }}
+            onConfirm={confirmDelete}
+          />
+        </div>
       </div>
     </div>
   );
