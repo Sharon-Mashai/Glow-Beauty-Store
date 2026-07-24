@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Sidebar } from "./Components/Sidebar";
 import { Topbar } from "./Components/Topbar";
 import { BookmarkGrid } from "./Components/BookmarkGrid";
 import AddLinkForm from "./Components/AddLinkForm";
@@ -102,10 +101,8 @@ const App = () => {
 
   return (
     <div className="app">
-      <div className="pageShell">
-        <Sidebar />
-
-        <div className="content">
+  <div className="pageShell">
+    <div className="content">
           <Topbar
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}

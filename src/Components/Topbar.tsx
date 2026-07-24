@@ -14,36 +14,30 @@ export const Topbar = ({
 }: TopbarProps) => {
   return (
     <header className="topbar">
+      <div className="topbarHeader">
+        <div className="logoHeading">
+          <h1>GlowBeauty</h1>
+         
+        </div>
 
-  <div className="topbarHeader">
+        <div className="topbarRight">
+          <div className="searchBox">
+            <HugeiconsIcon icon={Search01Icon} />
 
-    <h1>Saved Bookmarks</h1>
+            <input
+              type="text"
+              placeholder="Search bookmarks..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
-    <div className="topbarRight">
-
-      <div className="searchBox">
-        <HugeiconsIcon icon={Search01Icon} />
-
-        <input
-          type="text"
-          placeholder="Search bookmarks..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+          <button className="addBtn" onClick={onAddClick}>
+            <HugeiconsIcon icon={Add01Icon} />
+            Add Bookmark
+          </button>
+        </div>
       </div>
-
-      <button
-        className="addBtn"
-        onClick={onAddClick}
-      >
-        <HugeiconsIcon icon={Add01Icon} />
-        Add Bookmark
-      </button>
-
-    </div>
-
-  </div>
-
-</header>
+    </header>
   );
 };

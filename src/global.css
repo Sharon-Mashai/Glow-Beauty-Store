@@ -3,7 +3,8 @@ body {
   padding: 0;
   background: #0f0f10;
   color: white;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 * {
@@ -31,11 +32,12 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: min(1400px, 100%);
+  max-width: 1400px;
+  margin: 24px auto 0;
   padding: 0 24px 24px;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y:hidden ;
+  position: relative;
+  margin-top: 40px;
 }
 
 /*Topbar */
@@ -62,6 +64,17 @@ body {
   font-size: 32px;
   color: black;
   margin: 0;
+}
+.topNavBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 24px 18px;
+  background: rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  position: relative;
+  margin-bottom: 24px; 
 }
 
 .topbarActions {
@@ -148,11 +161,11 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: min(100%, 220px);
-  height: 50px;
+  width: min(90%, 200px);
+  height: 60px;
   color: black;
-  padding: 0 15px;
-  border: 40px;
+  padding: 0 5px;
+  border: 30px;
   border-color: rgb(20, 19, 19);
   flex: 1 1 220px;
 }
@@ -175,31 +188,40 @@ body {
 
 /* BookmarkGrid*/
 
-.bookmarkGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-  gap: 24px;
-  padding: 20px 0 40px;
-  width: 100%;
-  max-width: 100%;
-}
+.bookmarkGrid{
+    display:grid;
+    width:100%;
+    max-width:100%;
 
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:24px;
+
+    overflow:hidden;
+}
 /* BookmarkCard */
 
-.bookmarkCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 240px;
-  max-height: 240px;
-  padding: 22px;
-  width: 100%;
-  min-width: 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 14px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+.bookmarkCard{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    padding:22px;
+
+    min-height:220px;
+
+    border:1px solid rgba(0,0,0,.12);
+    border-radius:14px;
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:0 6px 20px rgba(0,0,0,.1);
+
+    overflow:hidden;
 }
 
 .bookmarkCard:hover {
@@ -213,22 +235,25 @@ body {
   align-items: flex-start;
 }
 
-.cardTitle {
-  display: flex;
-  flex-direction: column;
+.cardTitle{
+    flex:1;
+    min-width:0;
 }
 
-.cardTitle h3 {
-  margin: 0 0 8px;
-  font-size: 22px;
-  color: black;
+.cardTitle h3{
+    margin:0 0 8px;
+
+    color:black;
+
+    overflow-wrap:anywhere;
+    word-break:break-word;
 }
 
-.cardTitle a {
-  font-size: 14px;
-  color: black;
-  text-decoration: none;
-  word-break: break-word;
+.cardTitle a{
+    color:black;
+    text-decoration:none;
+    overflow-wrap:anywhere;
+    word-break:break-word;
 }
 
 .cardActions {
@@ -248,26 +273,28 @@ body {
   color: #555;
 }
 
-.description {
-  margin: 18px 0;
-  color: black;
-  line-height: 1.5;
-  overflow: hidden;
+.description{
+    margin:18px 0;
+    color:black;
+    line-height:1.5;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    word-break:break-word;
+}
+.tagContainer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    width:100%;
 }
 
-.tagContainer {
-  margin-top: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tagContainer span {
-  background: #1b1b1d;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
+.tagContainer span{
+    max-width:100%;
+    color: black;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 /* Add bookmark form*/
 
@@ -435,15 +462,11 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-
   min-height: calc(100vh - 220px);
-
   width: 100%;
   max-width: 100%;
-
   padding: 0 20px;
   transform: translateY(-50px);
-
   animation: fadeUp .6s ease;
 }
 
@@ -511,186 +534,294 @@ body {
 
 }
 
-/*Responsiveness*/
-
-@media (max-width: 768px) {
-  .formOverlay {
-    padding: 16px;
-  }
-
-  .addLinkForm {
-    width: 100%;
-    max-width: 100%;
-    padding: 24px;
-  }
-}
-
 /* 1200px */
 
-@media (max-width: 1200px) {
-  .bookmarkGrid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width:1200px){
+
+    .content{
+        padding:0 20px 24px;
+    }
+
+    .bookmarkGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+/* 992px */
+@media (max-width: 992px) {
+
+  .content{
+    padding:0 20px 24px;
+  }
+
+  .topNavBar{
+    padding:20px 18px;
+  }
+
+  .logo h2{
+    font-size:30px;
+  }
+
+  .logo p{
+    font-size:11px;
+    letter-spacing:.18em;
+  }
+
+  .topbar{
+    padding:20px 0;
+  }
+
+  .topbarHeader{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+  }
+
+  .topbarRight{
+    width:100%;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+  }
+
+  .searchBox{
+    flex:1;
+    min-width:260px;
+    max-width:none;
+  }
+
+  .addBtn{
+    width:170px;
+    flex-shrink:0;
+  }
+
+  .bookmarkGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .emptyIllustration{
+    width:300px;
+  }
+
+  .emptyBookmarks h2{
+    font-size:30px;
+  }
+
+  .emptyBookmarks p{
+    max-width:500px;
   }
 }
+/* 768px*/
+@media (max-width:768px){
 
-/* 1024px */
-
-@media (max-width: 1024px) {
-  .bookmarkGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding: 20px 0;
+  .content{
+    padding:0 18px 20px;
   }
 
-  .topbar {
-    padding: 20px 0;
+  .topNavBar{
+    padding:18px;
   }
 
-  .topbar h1 {
-    font-size: 30px;
+  .logo h2{
+    font-size:30px;
   }
+
+  .logo p{
+    font-size:11px;
+    letter-spacing:.18em;
+  }
+
+  .topbar{
+    padding:18px 0;
+  }
+
+  .topbarHeader{
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+
+  .topbarRight{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .searchBox{
+    width:220px;
+    flex:none;
+    max-width:220px;
+    min-width:220px;
+  }
+
+  .addBtn{
+    width:145px;
+    flex:none;
+  }
+
+    .bookmarkGrid{
+        grid-template-columns:1fr;
+    }
+
 }
 
-/* 768px */
+/* 480px*/
+@media (max-width:480px){
 
-@media (max-width: 768px) {
-  .topNavBar {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 18px 16px;
+  .content{
+    padding:0 14px 18px;
   }
 
-  .topNavControls {
-    position: static;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+  .topNavBar{
+    padding:16px;
   }
 
-  .categoryDropdown {
-    width: 100%;
+  .logo h2{
+    font-size:26px;
   }
 
-  .categoryDropdown select {
-    width: 100%;
+  .logo p{
+    font-size:10px;
+    letter-spacing:.15em;
   }
 
-  .bookmarkGrid {
-    grid-template-columns: 1fr;
+  .topbar h1{
+    font-size:24px;
+    text-align:center;
   }
 
-  .topbar {
-    padding: 20px 0;
-    align-items: flex-start;
+  .topbarHeader{
+    gap:16px;
   }
 
-  .topbar h1 {
-    font-size: 28px;
+  .topbarRight{
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
   }
 
-  .topbarActions {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
+  .searchBox{
+    width:100%;
+    max-width:300px;
+    min-width:0;
+    height:46px;
   }
 
-  .searchRow {
-    flex-direction: column;
-    align-items: stretch;
+  .addBtn{
+    width:100%;
+    max-width:300px;
+    height:46px;
+    justify-content:center;
   }
 
-  .searchBox {
-    width: 100%;
+  .bookmarkCard{
+    min-height:auto;
+    max-height:none;
+    padding:18px;
   }
 
-  .addBtn {
-    width: 100%;
-    padding: 12px 18px;
-  }
-}
-
-/* 480px */
-
-@media (max-width: 480px) {
-  .logo h2 {
-    font-size: 30px;
+  .emptyBookmarks{
+    min-height:60vh;
+    padding:20px 14px;
+    transform:none;
   }
 
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+  .emptyIllustration{
+    width:180px;
   }
 
-  .topbar h1 {
-    font-size: 26px;
+  .emptyBookmarks h2{
+    font-size:24px;
   }
 
-  .bookmarkGrid {
-    padding: 15px 0;
+  .emptyBookmarks p{
+    font-size:14px;
+    max-width:300px;
   }
 
-  .bookmarkCard {
-    min-height: 220px;
-    max-height: 220px;
-    padding: 18px;
+  .emptyAddBtn{
+    width:100%;
+    max-width:280px;
   }
 
-  .emptyBookmarks {
-    padding: 24px 12px;
-  }
-
-  .emptyIllustration {
-    width: 140px;
-  }
-
-  .cardTitle h3 {
-    font-size: 18px;
-  }
-
-  .description {
-    font-size: 14px;
-  }
-
-  .addLinkForm {
-    padding: 22px;
-  }
 }
 
 /* 320px */
+@media (max-width:320px){
 
-@media (max-width: 320px) {
-  .topbar h1 {
-    font-size: 22px;
+  .content{
+    padding:0 10px 16px;
   }
 
-  .logo h2 {
-    font-size: 24px;
+  .logo h2{
+    font-size:22px;
   }
 
-  .bookmarkGrid {
-    padding: 10px;
+  .logo p{
+    font-size:9px;
   }
 
-  .bookmarkCard {
-    padding: 15px;
+  .topbar h1{
+    font-size:20px;
   }
 
-  .addBtn {
-    width: 100%;
-    justify-content: center;
+  .searchBox{
+    width:100%;
+    max-width:260px;
+    height:42px;
+    padding:0 12px;
   }
 
-  .modalButtons {
-    flex-direction: column;
+  .searchBox input{
+    font-size:13px;
+  }
+
+  .addBtn{
+    width:100%;
+    max-width:260px;
+    height:42px;
+    font-size:13px;
+  }
+
+  .bookmarkCard{
+    padding:15px;
+  }
+
+  .cardTitle h3{
+    font-size:17px;
+  }
+
+  .description{
+    font-size:13px;
+  }
+
+  .emptyIllustration{
+    width:140px;
+  }
+
+  .emptyBookmarks h2{
+    font-size:20px;
+  }
+
+  .emptyBookmarks p{
+    font-size:13px;
+    max-width:250px;
+  }
+
+  .emptyAddBtn{
+    max-width:240px;
+    font-size:14px;
+  }
+
+  .modalButtons{
+    flex-direction:column;
   }
 
   .cancelBtn,
-  .deleteBtn {
-    width: 100%;
+  .deleteBtn{
+    width:100%;
   }
 
-  .addLinkForm {
-    padding: 18px;
-  }
 }
