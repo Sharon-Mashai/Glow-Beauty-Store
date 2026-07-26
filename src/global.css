@@ -18,14 +18,15 @@ body {
   justify-content: center;
   overflow-x: hidden;
   background: rgb(186, 182, 182);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
 }
 
 .pageShell {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  
 }
 
 .content {
@@ -42,22 +43,27 @@ body {
 
 /*Topbar */
 
-.topbar{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-    padding:24px 0;
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 0;
 }
-.topbarHeader{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    width:100%;
+.topbarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 130px;
 }
-.topbarRight{
-    display:flex;
-    align-items:center;
-    gap:15px;
+
+.logoHeading {
+  margin-right: auto;
+}
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .topbar h1 {
@@ -74,7 +80,7 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(8px);
   position: relative;
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
 }
 
 .topbarActions {
@@ -94,7 +100,6 @@ body {
   justify-content: flex-end;
   width: 100%;
 }
-
 
 .addBtn {
   width: 145px;
@@ -156,7 +161,6 @@ body {
   display: none;
 }
 
-
 .searchBox {
   display: flex;
   align-items: center;
@@ -174,8 +178,8 @@ body {
   flex: 1;
   background: transparent;
   border: none;
-  
-  color:black;
+
+  color: black;
   font-size: 15px;
   font-family: inherit;
 }
@@ -185,48 +189,60 @@ body {
   opacity: 1;
 }
 
-
 /* BookmarkGrid*/
 
-.bookmarkGrid{
-    display:grid;
-    width:100%;
-    max-width:100%;
+.bookmarkGrid {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns: repeat(auto-fill, 320px);
+  justify-content: center;
 
-    gap:24px;
+  gap: 24px;
 
-    overflow:hidden;
+  overflow: hidden;
 }
 /* BookmarkCard */
 
-.bookmarkCard{
-    width:100%;
-    min-width:0;
-    max-width:100%;
+.bookmarkCard {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+  display: flex;
+  flex-direction: column;
 
-    padding:22px;
+  padding: 22px;
 
-    min-height:220px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
 
-    border:1px solid rgba(0,0,0,.12);
-    border-radius:14px;
+  backdrop-filter: blur(8px);
 
-    backdrop-filter:blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 
-    box-shadow:0 6px 20px rgba(0,0,0,.1);
-
-    overflow:hidden;
+  transition:
+    max-height 0.35s ease,
+    min-height 0.35s ease,
+    transform 0.3s,
+    box-shadow 0.3s;
+  overflow: hidden;
 }
 
 .bookmarkCard:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.bookmarkCard.collapsedDesc {
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.bookmarkCard.expandedDesc {
+  min-height: 340px;
+  max-height: 340px;
 }
 
 .cardHeader {
@@ -235,25 +251,40 @@ body {
   align-items: flex-start;
 }
 
-.cardTitle{
-    flex:1;
-    min-width:0;
+.cardTitle {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
-.cardTitle h3{
-    margin:0 0 8px;
+.cardTitle h3 {
+  margin: 0 0 8px;
 
-    color:black;
+  color: black;
 
-    overflow-wrap:anywhere;
-    word-break:break-word;
+  max-width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  line-height: 1.3;
+  min-height: calc(1.3em * 2);
+  max-height: calc(1.3em * 2);
+  text-overflow: ellipsis;
 }
 
-.cardTitle a{
-    color:black;
-    text-decoration:none;
-    overflow-wrap:anywhere;
-    word-break:break-word;
+.cardTitle a {
+  color: black;
+  text-decoration: none;
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cardActions {
@@ -273,28 +304,108 @@ body {
   color: #555;
 }
 
-.description{
-    margin:18px 0;
-    color:black;
-    line-height:1.5;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-    word-break:break-word;
-}
-.tagContainer{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    width:100%;
+.descriptionWrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition:
+    max-height 0.35s ease,
+    min-height 0.35s ease;
 }
 
-.tagContainer span{
-    max-width:100%;
-    color: black;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+.descriptionWrapper.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.descriptionWrapper.clickable:hover .description {
+  color: #1a1a1a;
+}
+
+.description {
+  margin: 8px 0;
+  color: black;
+  line-height: 1.5;
+  display: -webkit-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  word-break: break-word;
+  max-height: 24px;
+  min-height: 24px;
+  text-overflow: ellipsis;
+  transition:
+    max-height 0.35s ease,
+    min-height 0.35s ease,
+    color 0.2s,
+    margin 0.35s ease;
+  pointer-events: none;
+}
+
+.description.expanded {
+  display: block;
+  -webkit-box-orient: unset;
+  box-orient: unset;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow-y: auto;
+  max-height: 140px;
+  min-height: 140px;
+  padding-right: 6px;
+  margin: 10px 0;
+}
+
+.description.expanded::-webkit-scrollbar {
+  width: 5px;
+}
+
+.description.expanded::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.description.expanded::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  min-height: 0;
+  max-height: 60px;
+  overflow-y: auto;
+  padding-right: 4px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.tagContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tagContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tagContainer::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+.tagContainer span {
+  max-width: 100%;
+  color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* Add bookmark form*/
 
@@ -309,7 +420,6 @@ body {
   padding: 16px;
   backdrop-filter: blur(6px);
   overflow-y: auto;
-
 }
 
 .formOverlay:not(.show) {
@@ -319,7 +429,7 @@ body {
 .addLinkForm {
   width: 100%;
   max-width: 420px;
-  background:rgb(42, 41, 41);
+  background: rgb(42, 41, 41);
   border-radius: 18px;
   display: flex;
   flex-direction: column;
@@ -333,14 +443,14 @@ body {
   align-self: flex-end;
   background: none;
   border: none;
-  color:white;
+  color: white;
   font-size: 28px;
   cursor: pointer;
 }
 
 .addLinkForm h2 {
   margin: 0 0 10px;
-  color:white;
+  color: white;
 }
 
 .formFieldLabel {
@@ -372,6 +482,67 @@ body {
   max-height: 120px;
 }
 
+.draftPrompt{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  padding:8px 4px;
+}
+
+.draftPrompt h2{
+  color:white;
+  font-size:22px;
+  line-height:1.3;
+}
+
+.draftPromptSub{
+  color:#d6d3d3;
+  margin:0;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.draftPromptButtons{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:4px;
+}
+
+.draftBtn{
+  width:100%;
+  height:50px;
+  padding:0 15px;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.25s;
+  font-family:inherit;
+}
+
+.continueBtn{
+  background:white;
+  color:black;
+}
+
+.continueBtn:hover{
+  background:#e9e9e9;
+}
+
+.freshBtn{
+  background:transparent;
+  color:#e9e9e9;
+  border:1px solid rgba(255,255,255,0.35);
+}
+
+.freshBtn:hover{
+  background:rgba(255,255,255,0.08);
+  color:white;
+  border-color:rgba(255,255,255,0.6);
+}
+
 .addLinkForm button[type="submit"] {
   width: 100%;
   height: 50px;
@@ -389,7 +560,7 @@ body {
 }
 
 .addLinkForm button[type="submit"]:hover {
-  background:gray;
+  background: gray;
 }
 
 /*Delete Modal*/
@@ -442,16 +613,16 @@ body {
 }
 
 .cancelBtn:hover {
-   background:rgb(37, 36, 36);
+  background: rgb(37, 36, 36);
 }
 
 .deleteBtn {
-  background:black;
+  background: black;
   color: white;
 }
 
 .deleteBtn:hover {
-  background:rgb(37, 36, 36);
+  background: rgb(37, 36, 36);
 }
 /* Empty State */
 
@@ -467,7 +638,7 @@ body {
   max-width: 100%;
   padding: 0 20px;
   transform: translateY(-50px);
-  animation: fadeUp .6s ease;
+  animation: fadeUp 0.6s ease;
 }
 
 .emptyIcon {
@@ -512,7 +683,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .emptyAddBtn:hover {
@@ -521,7 +692,6 @@ body {
 }
 
 @keyframes fadeUp {
-
   from {
     opacity: 0;
     transform: translateY(25px);
@@ -531,297 +701,296 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
 /* 1200px */
 
-@media (max-width:1200px){
+@media (max-width: 1200px) {
+  .content {
+    padding: 0 20px 24px;
+  }
 
-    .content{
-        padding:0 20px 24px;
-    }
-
-    .bookmarkGrid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
+  .bookmarkGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+    justify-content: center;
+  }
 }
 /* 992px */
 @media (max-width: 992px) {
-
-  .content{
-    padding:0 20px 24px;
+  .content {
+    padding: 0 20px 24px;
   }
 
-  .topNavBar{
-    padding:20px 18px;
+  .topNavBar {
+    padding: 20px 18px;
   }
 
-  .logo h2{
-    font-size:30px;
+  .logo h2 {
+    font-size: 30px;
   }
 
-  .logo p{
-    font-size:11px;
-    letter-spacing:.18em;
+  .logo p {
+    font-size: 11px;
+    letter-spacing: 0.18em;
   }
 
-  .topbar{
-    padding:20px 0;
+  .topbar {
+    padding: 20px 0;
   }
 
-  .topbarHeader{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:18px;
+  .topbarHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
   }
 
-  .topbarRight{
-    width:100%;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:15px;
+  .topbarRight {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 
-  .searchBox{
-    flex:1;
-    min-width:260px;
-    max-width:none;
+  .searchBox {
+    flex: 1;
+    min-width: 260px;
+    max-width: none;
   }
 
-  .addBtn{
-    width:170px;
-    flex-shrink:0;
+  .addBtn {
+    width: 170px;
+    flex-shrink: 0;
   }
 
-  .bookmarkGrid{
-    grid-template-columns:repeat(2,1fr);
+  .bookmarkGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+    justify-content: center;
   }
 
-  .emptyIllustration{
-    width:300px;
+  .emptyIllustration {
+    width: 300px;
   }
 
-  .emptyBookmarks h2{
-    font-size:30px;
+  .emptyBookmarks h2 {
+    font-size: 30px;
   }
 
-  .emptyBookmarks p{
-    max-width:500px;
+  .emptyBookmarks p {
+    max-width: 500px;
   }
 }
 /* 768px*/
-@media (max-width:768px){
-
-  .content{
-    padding:0 18px 20px;
+@media (max-width: 768px) {
+  .content {
+    padding: 0 18px 20px;
   }
 
-  .topNavBar{
-    padding:18px;
+  .topNavBar {
+    padding: 18px;
   }
 
-  .logo h2{
-    font-size:30px;
+  .logo h2 {
+    font-size: 30px;
   }
 
-  .logo p{
-    font-size:11px;
-    letter-spacing:.18em;
+  .logo p {
+    font-size: 11px;
+    letter-spacing: 0.18em;
   }
 
-  .topbar{
-    padding:18px 0;
+  .topbar {
+    padding: 18px 0;
   }
 
-  .topbarHeader{
-    flex-direction:column;
-    align-items:center;
-    gap:18px;
+  .topbarHeader {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
   }
 
-  .topbarRight{
-    width:100%;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
+  .topbarRight {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
-  .searchBox{
-    width:220px;
-    flex:none;
-    max-width:220px;
-    min-width:220px;
+  .searchBox {
+    width: 220px;
+    flex: none;
+    max-width: 220px;
+    min-width: 220px;
   }
 
-  .addBtn{
-    width:145px;
-    flex:none;
+  .addBtn {
+    width: 145px;
+    flex: none;
   }
 
-    .bookmarkGrid{
-        grid-template-columns:1fr;
-    }
+  .bookmarkGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+    justify-content: center;
+  }
 
+  .bookmarkCard {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
 }
 
 /* 480px*/
-@media (max-width:480px){
-
-  .content{
-    padding:0 14px 18px;
+@media (max-width: 480px) {
+  .content {
+    padding: 0 14px 18px;
   }
 
-  .topNavBar{
-    padding:16px;
+  .topNavBar {
+    padding: 16px;
   }
 
-  .logo h2{
-    font-size:26px;
+  .logo h2 {
+    font-size: 26px;
   }
 
-  .logo p{
-    font-size:10px;
-    letter-spacing:.15em;
+  .logo p {
+    font-size: 10px;
+    letter-spacing: 0.15em;
   }
 
-  .topbar h1{
-    font-size:24px;
-    text-align:center;
+  .topbar h1 {
+    font-size: 24px;
+    text-align: center;
   }
 
-  .topbarHeader{
-    gap:16px;
+  .topbarHeader {
+    gap: 16px;
   }
 
-  .topbarRight{
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
+  .topbarRight {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
-  .searchBox{
-    width:100%;
-    max-width:300px;
-    min-width:0;
-    height:46px;
+  .searchBox {
+    width: 100%;
+    max-width: 300px;
+    min-width: 0;
+    height: 46px;
   }
 
-  .addBtn{
-    width:100%;
-    max-width:300px;
-    height:46px;
-    justify-content:center;
+  .addBtn {
+    width: 100%;
+    max-width: 300px;
+    height: 46px;
+    justify-content: center;
   }
 
-  .bookmarkCard{
-    min-height:auto;
-    max-height:none;
-    padding:18px;
+  .bookmarkCard {
+    min-height: auto;
+    max-height: none;
+    padding: 18px;
   }
 
-  .emptyBookmarks{
-    min-height:60vh;
-    padding:20px 14px;
-    transform:none;
+  .emptyBookmarks {
+    min-height: 60vh;
+    padding: 20px 14px;
+    transform: none;
   }
 
-  .emptyIllustration{
-    width:180px;
+  .emptyIllustration {
+    width: 180px;
   }
 
-  .emptyBookmarks h2{
-    font-size:24px;
+  .emptyBookmarks h2 {
+    font-size: 24px;
   }
 
-  .emptyBookmarks p{
-    font-size:14px;
-    max-width:300px;
+  .emptyBookmarks p {
+    font-size: 14px;
+    max-width: 300px;
   }
 
-  .emptyAddBtn{
-    width:100%;
-    max-width:280px;
+  .emptyAddBtn {
+    width: 100%;
+    max-width: 280px;
   }
-
 }
 
 /* 320px */
-@media (max-width:320px){
-
-  .content{
-    padding:0 10px 16px;
+@media (max-width: 320px) {
+  .content {
+    padding: 0 10px 16px;
   }
 
-  .logo h2{
-    font-size:22px;
+  .logo h2 {
+    font-size: 22px;
   }
 
-  .logo p{
-    font-size:9px;
+  .logo p {
+    font-size: 9px;
   }
 
-  .topbar h1{
-    font-size:20px;
+  .topbar h1 {
+    font-size: 20px;
   }
 
-  .searchBox{
-    width:100%;
-    max-width:260px;
-    height:42px;
-    padding:0 12px;
+  .searchBox {
+    width: 100%;
+    max-width: 260px;
+    height: 42px;
+    padding: 0 12px;
   }
 
-  .searchBox input{
-    font-size:13px;
+  .searchBox input {
+    font-size: 13px;
   }
 
-  .addBtn{
-    width:100%;
-    max-width:260px;
-    height:42px;
-    font-size:13px;
+  .addBtn {
+    width: 100%;
+    max-width: 260px;
+    height: 42px;
+    font-size: 13px;
   }
 
-  .bookmarkCard{
-    padding:15px;
+  .bookmarkCard {
+    padding: 15px;
   }
 
-  .cardTitle h3{
-    font-size:17px;
+  .cardTitle h3 {
+    font-size: 17px;
   }
 
-  .description{
-    font-size:13px;
+  .description {
+    font-size: 13px;
   }
 
-  .emptyIllustration{
-    width:140px;
+  .emptyIllustration {
+    width: 140px;
   }
 
-  .emptyBookmarks h2{
-    font-size:20px;
+  .emptyBookmarks h2 {
+    font-size: 20px;
   }
 
-  .emptyBookmarks p{
-    font-size:13px;
-    max-width:250px;
+  .emptyBookmarks p {
+    font-size: 13px;
+    max-width: 250px;
   }
 
-  .emptyAddBtn{
-    max-width:240px;
-    font-size:14px;
+  .emptyAddBtn {
+    max-width: 240px;
+    font-size: 14px;
   }
 
-  .modalButtons{
-    flex-direction:column;
+  .modalButtons {
+    flex-direction: column;
   }
 
   .cancelBtn,
-  .deleteBtn{
-    width:100%;
+  .deleteBtn {
+    width: 100%;
   }
-
 }

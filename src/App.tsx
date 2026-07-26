@@ -118,7 +118,7 @@ const App = () => {
           />
 
           <AddLinkForm
-            key={`${showForm ? "open" : "closed"}-${editingLink?.id ?? "new"}`}
+            key={`form-${editingLink?.id ?? "new"}-${showForm ? "open" : "closed"}`}
             show={showForm}
             onClose={() => {
               setShowForm(false);

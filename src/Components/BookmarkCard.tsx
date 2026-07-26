@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Link } from "../types/Link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Edit03Icon, Delete02Icon } from "@hugeicons/core-free-icons";
@@ -8,9 +9,26 @@ interface BookmarkCardProps {
   onEdit: (link: Link) => void;
 }
 
+const DESCRIPTION_CHAR_LIMIT = 40;
+
 export const BookmarkCard = ({ link, onDelete, onEdit }: BookmarkCardProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isLongDescription = link.description.length > DESCRIPTION_CHAR_LIMIT;
+
+  const toggleExpanded = () => {
+    if (isLongDescription) {
+      setIsExpanded((prev) => !prev);
+    }
+  };
+
+  const cardHeightClass = isLongDescription
+    ? isExpanded
+      ? "expandedDesc"
+      : "collapsedDesc"
+    : "";
+
   return (
-    <div className="bookmarkCard">
+    <div className={`bookmarkCard ${cardHeightClass}`}>
       <div className="cardHeader">
         <div className="cardTitle">
           <div>
@@ -33,7 +51,21 @@ export const BookmarkCard = ({ link, onDelete, onEdit }: BookmarkCardProps) => {
         </div>
       </div>
 
-      <p className="description">{link.description}</p>
+      <div
+        className={`descriptionWrapper ${isLongDescription ? "clickable" : ""}`}
+        onClick={toggleExpanded}
+        title={
+          isLongDescription
+            ? isExpanded
+              ? "Click to collapse"
+              : "Click to read more"
+            : ""
+        }
+      >
+        <p className={`description ${isExpanded ? "expanded" : ""}`}>
+          {link.description}
+        </p>
+      </div>
 
       <div className="tagContainer">
         {link.tags.map((tag) => (
