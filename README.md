@@ -1,60 +1,201 @@
-# GlowBeauty Store
+# Frontend Mentor - GlowBeauty Store Solution
 
-This is a cosy little bookmark manager I built so I could stop losing track of all the skincare and beauty products I want to try.
+This is my **GlowBeauty Store**, a modern bookmark manager designed to help beauty and skincare enthusiasts keep track of products they want to try. The application was built using **React**, **TypeScript**, and **Vite**, demonstrating component-based architecture, responsive design, local data persistence, and interactive user experiences.
 
-Stash links to your favourite cleansers, moisturisers, sunscreens, and everything in between — each with a description and handy tags. Everything lives right in your browser, so no accounts, no sign-ups, no fuss. Just a pretty place for your product wishlist.
+## Overview
 
-## What it actually does
+### The Challenge
 
-- **Save products you love** — Drop in a link, give it a name, write down why it's on your radar, and tag it however you like.
-- **Edit whenever** — Tried a product and changed your mind? Swapped your skincare routine? Tweak any bookmark in a couple of clicks.
-- **Delete (carefully)** — No mistake-moments here. Before anything gets binned, you'll get a gentle "are you sure?" prompt.
-- **Find things fast** — The search box hunts through titles, URLs, descriptions, and tags all at once. Even vaguely remember something? You'll probably find it.
-- **Click to read more** — Lengthy product thoughts are tucked away by default so the grid stays clean. Click a description to expand it, click again to tuck it back.
-- **Draft-saving safety net** — Halfway through typing a review and get distracted? Close the form and it'll remember what you wrote. Next time you open it, pick up where you left off or wipe the slate clean.
-- **No backend needed** — Everything is stored in your browser's localStorage. Your shelf stays on your device.
-- **Works everywhere** — Looks just as nice on your phone while you're browsing Sephora in the queue as it does on your desktop. Breakpoints all the way down to tiny screens.
-- **Feels good to use** — Dark and moody vibe with a soft glassy look, cards that lift when you hover them, and a friendly empty-state illustration that greets you when it's new.
+Users should be able to:
 
-## What is under the hood
+- Save beauty and skincare product bookmarks
+- Edit existing bookmarks
+- Delete bookmarks with a confirmation dialog
+- Search bookmarks by title, URL, description, or tags
+- Expand and collapse long product descriptions
+- Resume unfinished bookmark drafts
+- Store all data locally using the browser's localStorage
+- View an optimized layout across desktop, tablet, and mobile devices
+- Experience responsive interactions and hover effects throughout the application
 
-— just modern tools that make the dev experience nice:                                 
 
-1. Interface       > React                                      
-2. Types           > TypeScript                         |
-3. Bundling        > Vite  — it's fast                           
-4. Icons           > Hugeicons (the free core set + React wrapper)
-5. Style           > Plain CSS in `global.css` and `App.css`  
-6. Storage         > Your browser's localStorage                  
 
-## Folders and files
+### Links
 
-```
-src/
-Components/
-- AddLinkForm.tsx   — The pop-up form for new and edited bookmarks. Also handles the draft-resume prompt.
-- BookmarkCard.tsx   — One individual product card. Expandable text, edit + delete buttons in the corner.
-- BookmarkGrid.tsx   — The responsive grid where everything lives. Also handles the "empty shelf" and "no search results" screens.
-- DeleteModal.tsx      — The polite double-check popup before you delete anything.
--Sidebar.tsx          — The little GlowBeauty branding header.
--Topbar.tsx           — Top bar with the logo, search box, and that big Add Bookmark button.
+- **Solution URL:** `https://github.com/Sharon-Mashai/Glow-Beauty-Store.git`
+- **Live Site URL:** `https://glow-beauty-store-nu.vercel.app/`
 
- assets/
- -images/
-IllustrationImage.png  — The friendly little illustration you see when there are zero bookmarks saved.
+---
 
-types/
-- Link.tsx             — The TypeScript shape for a bookmark (title, url, description, tags, etc.)
+# Getting Started
 
--App.css               — A few app-specific styles
--App.tsx               — The main component — holds all the state and wires everything together
--global.css            — Most of the styling lives here, including all the responsive rules
--main.tsx              — The entry point that mounts the React app
+Follow these instructions to run the project locally.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (v18 or later recommended)
+- npm (comes with Node.js)
+
+You can verify your installation by running:
+
+```bash
+node -v
+npm -v
 ```
 
-## The bookmark shape
+## Installation
 
-Every product you save is a `Link` object (defined in [Link.tsx](src/types/Link.tsx)) that looks like this:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Sharon-Mashai/Glow-Beauty-Store.git
+```
+
+### 2. Navigate to the project directory
+
+```bash
+cd glowbeauty-store
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Running the Application
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Vite will start the application and display something similar to:
+
+```
+Local: http://localhost:5173
+```
+
+Open the URL in your browser to view the application.
+
+The project supports **Hot Module Replacement (HMR)**, meaning your changes appear instantly without needing to refresh the browser.
+
+---
+
+## Building for Production
+
+To generate an optimized production build, run:
+
+```bash
+npm run build
+```
+
+The compiled application will be generated inside the **dist** folder.
+
+---
+
+## Previewing the Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+---
+
+## My Process
+
+### Built With
+
+- React 19
+- TypeScript
+- Vite
+- Hugeicons React Library
+- CSS3
+- Flexbox
+- Responsive Design
+- Component-Based Architecture
+- Browser localStorage
+
+---
+
+### Features
+
+- Add bookmarks for beauty and skincare products
+- Edit saved bookmarks
+- Delete bookmarks with confirmation
+- Powerful search functionality
+- Expandable product descriptions
+- Draft auto-save and resume functionality
+- Responsive layout for all screen sizes
+- Beautiful glassmorphism-inspired interface
+- Hover animations and smooth user interactions
+- Persistent local storage with no backend required
+
+---
+
+### What I Learned
+
+While working on this project, I learned how to:
+
+- Build reusable React components using TypeScript.
+- Manage application state for creating, editing, deleting, and searching bookmarks.
+- Store and retrieve persistent data using the browser's localStorage.
+- Implement draft-saving functionality that restores unfinished forms.
+- Build responsive layouts that adapt seamlessly to different screen sizes.
+- Create reusable modal components for user confirmations.
+- Design expandable content sections for improved readability.
+- Structure a scalable React project with reusable components and TypeScript interfaces.
+
+Example of updating the bookmark list using React state:
+
+```tsx
+setBookmarks((previousBookmarks) =>
+  previousBookmarks.map((bookmark) =>
+    bookmark.id === updatedBookmark.id ? updatedBookmark : bookmark
+  )
+);
+```
+
+---
+
+### Continued Development
+
+In future projects, I would like to improve my skills in:
+
+- Advanced React patterns (Context API and custom hooks)
+- Global state management
+- Backend integration with databases
+- User authentication
+- Cloud storage for bookmarks
+- Filtering and sorting bookmarks
+- Accessibility improvements
+- Unit and integration testing
+- Progressive Web App (PWA) support
+
+---
+
+### Useful Resources
+
+- React Documentation – https://react.dev
+- TypeScript Handbook – https://www.typescriptlang.org/docs/
+- Vite Documentation – https://vite.dev
+- Hugeicons – https://hugeicons.com
+- MDN Web Docs – https://developer.mozilla.org
+
+---
+
+## Data Model
+
+Each bookmarked product is stored as a `Link` object.
 
 ```typescript
 export interface Link {
@@ -66,25 +207,42 @@ export interface Link {
 }
 ```
 
-Pretty self-explanatory — tags come through as an array so searching and filtering is a breeze.
+---
 
-## A little walkthrough
+## How It Works
 
-1. **Add your first product** — Hit the **Add Bookmark** button up top (or the big friendly button on the empty screen). You'll fill in:
-   - **Product Title** — whatever you want to call it (e.g. "The Ordinary Niacinamide 10% + Zinc 1%")
-   - **Website URL** — the product page link
-   - **Description** — your notes: skin-type, how it felt, repurchase? First-impressions, anything goes
-   - **Tags** — comma-separated, anything helpful (e.g. `serum, oily-skin, affordable`)
-2. **Search through your shelf** — Just start typing in the search box. It looks through titles, links, your notes, and tags all at once.
-3. **Fix a typo / update a note** — Click the little pencil icon on any card.
-4. **Toss something out** — Trash icon → confirm → gone.
-5. **Expand long descriptions** — See a description that got cut off? Click it to read the whole thing, click again to collapse.
-6. **Resume or restart** — If you start typing a bookmark and get pulled away, the app remembers. When you come back, it'll ask if you want to keep going with that draft or start with a blank form.
+Users can:
 
-## localStorage keys                                                                        
+- Add new beauty and skincare product bookmarks.
+- Include product names, URLs, personal notes, and tags.
+- Search bookmarks instantly using keywords.
+- Edit bookmarks whenever information changes.
+- Delete bookmarks safely through a confirmation dialog.
+- Expand long descriptions for easier reading.
+- Resume unfinished bookmarks thanks to automatic draft saving.
 
-- `bookmarks`            > Your whole shelf — the full array of saved `Link` objects                 
-- `glowBeauty_formDraft` > Any in-progress add/edit that you haven't submitted or cancelled yet      
+---
+
+## Local Storage
+
+The application stores all information locally in the browser using the following keys:
 
 
+- `bookmarks`  Stores the complete list of saved bookmarks 
+- `glowBeauty_formDraft` Stores unfinished bookmark forms 
 
+No backend or user account is required.
+
+---
+
+## Author
+
+**Sharon Mashai**
+
+- GitHub: `https://github.com/Sharon-Mashai`
+
+---
+
+## Acknowledgments
+
+Special thanks to **Mentor and Facilitator** for providing realistic front-end challenges that encourage developers to strengthen their React, TypeScript, responsive design, and UI development skills. This project also draws inspiration from modern beauty product interfaces and demonstrates practical use of local storage, reusable components, and responsive application design.
