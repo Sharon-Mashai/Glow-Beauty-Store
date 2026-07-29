@@ -3,20 +3,27 @@ import { Topbar } from "./Components/Topbar";
 import { BookmarkGrid } from "./Components/BookmarkGrid";
 import AddLinkForm from "./Components/AddLinkForm";
 import { DeleteModal } from "./Components/DeleteModal";
+import Toast from "./Components/Toast";
 import type { Link } from "./types/Link";
+
+interface ToastState {
+  message: string;
+  type: "success" | "delete";
+  visible: boolean;
+}
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
-  // Edit Bookmark
   const [editingLink, setEditingLink] = useState<Link | null>(null);
-  // Search
   const [searchTerm, setSearchTerm] = useState("");
-  // Sidebar Category
   const [selectedCategory] = useState("All");
-  // Delete Modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [linkToDelete, setLinkToDelete] = useState<number | null>(null);
-  // Bookmarks
+  const [toast, setToast] = useState<ToastState>({
+    message: "",
+    type: "success",
+    visible: false,
+  });
   const [links, setLinks] = useState<Link[]>(() => {
     try {
       const savedLinks = localStorage.getItem("bookmarks");
@@ -26,7 +33,6 @@ const App = () => {
     }
   });
 
-  // Save to localStorage
   useEffect(() => {
     localStorage.setItem("bookmarks", JSON.stringify(links));
   }, [links]);
@@ -39,8 +45,17 @@ const App = () => {
     };
   }, [showForm]);
 
-  // Add / Update
+  const showToast = (message: string, type: "success" | "delete") => {
+    setToast({ message, type, visible: true });
+  };
+
+  const closeToast = () => {
+    setToast((prev) => ({ ...prev, visible: false }));
+  };
+
   const saveLink = (link: Link) => {
+    const isEditing = editingLink !== null;
+
     setLinks((currentLinks) => {
       if (editingLink) {
         return currentLinks.map((item) => (item.id === link.id ? link : item));
@@ -49,27 +64,30 @@ const App = () => {
       return [...currentLinks, link];
     });
 
+    showToast(
+      isEditing ? "Bookmark updated successfully!" : "Bookmark saved successfully!",
+      "success",
+    );
+
     setEditingLink(null);
     setShowForm(false);
   };
 
-  // Open Delete Modal
   const deleteLink = (id: number) => {
     setLinkToDelete(id);
     setShowDeleteModal(true);
   };
 
-  // Confirm Delete
   const confirmDelete = () => {
     if (linkToDelete !== null) {
       setLinks(links.filter((link) => link.id !== linkToDelete));
+      showToast("Bookmark deleted successfully!", "delete");
     }
 
     setLinkToDelete(null);
     setShowDeleteModal(false);
   };
 
-  // Edit
   const editLink = (link: Link) => {
     setEditingLink(link);
     setShowForm(true);
@@ -80,7 +98,6 @@ const App = () => {
     setShowForm(true);
   };
 
-  // Search + Category Filter
   const filteredLinks = links.filter((link) => {
     const search = searchTerm.toLowerCase();
 
@@ -101,8 +118,8 @@ const App = () => {
 
   return (
     <div className="app">
-  <div className="pageShell">
-    <div className="content">
+      <div className="pageShell">
+        <div className="content">
           <Topbar
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -136,6 +153,14 @@ const App = () => {
             }}
             onConfirm={confirmDelete}
           />
+
+          {toast.visible && (
+            <Toast
+              message={toast.message}
+              type={toast.type}
+              onClose={closeToast}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -18,6 +18,12 @@ interface Draft {
   savedAt: number;
 }
 
+interface FormErrors {
+  title?: string;
+  url?: string;
+  description?: string;
+}
+
 const DRAFT_STORAGE_KEY = "glowBeauty_formDraft";
 
 const loadDraft = (): Draft | null => {
@@ -104,6 +110,9 @@ export default function AddLinkForm({
   const [description, setDescription] = useState(initialDecision.values.description);
   const [tags, setTags] = useState(initialDecision.values.tags);
 
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+
   const [showDraftPrompt, setShowDraftPrompt] = useState(
     initialDecision.showPrompt,
   );
@@ -112,6 +121,53 @@ export default function AddLinkForm({
   );
 
   const overlayRef = useRef<HTMLDivElement>(null);
+
+  const validateField = (field: string, value: string): string | undefined => {
+    switch (field) {
+      case "title":
+        if (value.trim() === "") return "Product Title is required";
+        return undefined;
+      case "url":
+        if (value.trim() === "") return "Website URL is required";
+        try {
+          new URL(value);
+        } catch {
+          return "Please enter a valid URL";
+        }
+        return undefined;
+      case "description":
+        if (value.trim() === "") return "Description is required";
+        return undefined;
+      default:
+        return undefined;
+    }
+  };
+
+  const validateForm = (): FormErrors => {
+    return {
+      title: validateField("title", title),
+      url: validateField("url", url),
+      description: validateField("description", description),
+    };
+  };
+
+  const handleBlur = (field: string, value: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const error = validateField(field, value);
+    setErrors((prev) => ({ ...prev, [field]: error }));
+  };
+
+  const handleChange = (
+    field: string,
+    value: string,
+    setter: (v: string) => void,
+  ) => {
+    setter(value);
+    if (touched[field]) {
+      const error = validateField(field, value);
+      setErrors((prev) => ({ ...prev, [field]: error }));
+    }
+  };
 
   const persistDraftThenClose = useCallback(() => {
     const values = { title, url, description, tags };
@@ -155,10 +211,16 @@ export default function AddLinkForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      new URL(url);
-    } catch {
-      alert("Please enter a valid URL");
+    const formErrors = validateForm();
+    setErrors(formErrors);
+    setTouched({ title: true, url: true, description: true, tags: true });
+
+    const hasErrors =
+      formErrors.title !== undefined ||
+      formErrors.url !== undefined ||
+      formErrors.description !== undefined;
+
+    if (hasErrors) {
       return;
     }
 
@@ -179,6 +241,8 @@ export default function AddLinkForm({
     setUrl("");
     setDescription("");
     setTags("");
+    setErrors({});
+    setTouched({});
     clearDraft();
     setShowDraftPrompt(false);
     setPendingDraft(null);
@@ -230,6 +294,7 @@ export default function AddLinkForm({
         className="addLinkForm"
         onSubmit={handleSubmit}
         onClick={(e) => e.stopPropagation()}
+        noValidate
       >
         {showDraftPrompt && pendingDraft ? (
           <div className="draftPrompt">
@@ -281,9 +346,14 @@ export default function AddLinkForm({
               type="text"
               placeholder="Product Title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => handleChange("title", e.target.value, setTitle)}
+              onBlur={(e) => handleBlur("title", e.target.value)}
+              className={errors.title && touched.title ? "inputError" : ""}
               required
             />
+            {errors.title && touched.title && (
+              <p className="fieldError">{errors.title}</p>
+            )}
 
             <label
               className="formFieldLabel"
@@ -296,9 +366,14 @@ export default function AddLinkForm({
               type="url"
               placeholder="Website URL"
               value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              onChange={(e) => handleChange("url", e.target.value, setUrl)}
+              onBlur={(e) => handleBlur("url", e.target.value)}
+              className={errors.url && touched.url ? "inputError" : ""}
               required
             />
+            {errors.url && touched.url && (
+              <p className="fieldError">{errors.url}</p>
+            )}
 
             <label
               className="formFieldLabel"
@@ -311,9 +386,14 @@ export default function AddLinkForm({
               rows={4}
               placeholder="Description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => handleChange("description", e.target.value, setDescription)}
+              onBlur={(e) => handleBlur("description", e.target.value)}
+              className={errors.description && touched.description ? "inputError" : ""}
               required
             />
+            {errors.description && touched.description && (
+              <p className="fieldError">{errors.description}</p>
+            )}
 
             <label
               className="formFieldLabel"

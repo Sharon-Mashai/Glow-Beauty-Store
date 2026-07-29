@@ -482,6 +482,19 @@ body {
   max-height: 120px;
 }
 
+.addLinkForm input.inputError,
+.addLinkForm textarea.inputError {
+  border: 2px solid #ef4444;
+  background: #ffe5e5;
+}
+
+.fieldError {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin: 6px 0 14px;
+  padding-left: 4px;
+}
+
 .draftPrompt{
   display:flex;
   flex-direction:column;
@@ -703,6 +716,47 @@ body {
   }
 }
 
+.toast{
+    position:fixed;
+    top:25px;
+    right:25px;
+
+    background:#323232;
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+    animation:slideIn .3s ease;
+
+    z-index:99999;
+}
+
+.toast.success{
+    border-left:5px solid #3cb371;
+}
+
+.toast.delete{
+    border-left:5px solid #ef4444;
+}
+
+@keyframes slideIn{
+
+from{
+transform:translateX(80px);
+opacity:0;
+}
+
+to{
+transform:translateX(0);
+opacity:1;
+}
+
+}
+/*Media queries*/
 /* 1200px */
 
 @media (max-width: 1200px) {
