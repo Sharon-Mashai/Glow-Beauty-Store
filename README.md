@@ -22,6 +22,8 @@ Users should be able to:
 
 ![App Preview](src/assets/images/GlowBeauty_Preview.png)
 
+![After adding the link](src/assets/images/Added_Link.png)
+
 ### Links
 
 - **Solution URL:** `https://github.com/Sharon-Mashai/Glow-Beauty-Store.git`
