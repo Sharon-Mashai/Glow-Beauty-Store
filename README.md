@@ -18,7 +18,9 @@ Users should be able to:
 - View an optimized layout across desktop, tablet, and mobile devices
 - Experience responsive interactions and hover effects throughout the application
 
+### Screenshot
 
+![App Preview](src/assets/images/GlowBeauty_Preview.png)
 
 ### Links
 
